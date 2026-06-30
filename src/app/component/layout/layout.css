@@ -1,0 +1,154 @@
+/* Barra de navegación */
+.navbar {
+  display: flex; /* Coloca los elementos en una fila */
+  justify-content: space-between; /* Separa logo y menú a los extremos */
+  align-items: center; /* Centra verticalmente los elementos */
+
+  padding: 10px 30px; /* Espacio interno: arriba/abajo 10px, izquierda/derecha 30px */
+  background: #0B1724; /* Color de fondo de la barra */
+
+  position: fixed; /* La barra permanece fija al hacer scroll */
+  top: 0; /* Se pega en la parte superior */
+  left: 0; /* Comienza desde el borde izquierdo */
+  right: 0; /* Llega hasta el borde derecho */
+
+  z-index: 1000; /* Hace que la barra quede encima de otros elementos */
+}
+
+/* Contenedor del logo */
+.logo {
+  display: flex; /* Permite alinear los elementos del logo */
+  align-items: center; /* Centra verticalmente el contenido */
+  gap: 10px; /* Espacio entre imagen y texto */
+  color: white; /* Color del texto */
+  font-size: 20px; /* Tamaño del texto */
+}
+
+/* Imagen del logo */
+.logo img {
+  width: 180px; /* Ancho del logo */
+  height: auto; /* Mantiene la proporción de la imagen */
+  object-fit: contain; /* Evita deformar la imagen */
+}
+
+/* Lista del menú */
+.menu {
+  list-style: none; /* Quita las viñetas de la lista */
+  display: flex; /* Coloca los elementos en una fila */
+  gap: 20px; /* Espacio entre cada opción */
+}
+
+/* Enlaces del menú */
+.menu a {
+  color: white; /* Color del texto */
+  text-decoration: none; /* Quita el subrayado */
+  transition: 0.3s; /* Hace suave el cambio de color */
+}
+
+/* Efecto al pasar el mouse */
+.menu a:hover {
+  color: #00e0ff; /* Cambia el color al pasar el cursor */
+}
+
+/* Botón de iniciar sesión */
+.btn{
+  background: #F39C12; /* Color de fondo */
+  color: black; /* Color del texto */
+  border: none; /* Quita el borde */
+  padding: 8px 18px; /* Espacio interno */
+  border-radius: 25px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor a una mano */
+  transition: 0.3s; /* Transición suave */
+}
+
+/* Clase para los enlaces del menú */
+.menu-link{
+  opacity: 0.5; /* Hace el texto semitransparente */
+}
+
+/* Fondo del modal */
+.overlay {
+  position: fixed; /* Cubre toda la ventana */
+  top: 0; /* Desde arriba */
+  left: 0; /* Desde la izquierda */
+  width: 100%; /* Todo el ancho */
+  height: 100%; /* Todo el alto */
+
+  display: flex; /* Usa Flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+
+  z-index: 99999; /* Queda por encima de todo */
+}
+
+/* Ventana del login */
+.modal {
+  background: rgba(255, 255, 255, 0.15); /* Fondo blanco transparente */
+  backdrop-filter: blur(10px); /* Desenfoca el fondo */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
+
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borde transparente */
+
+  padding: 20px; /* Espacio interno */
+  border-radius: 15px; /* Esquinas redondeadas */
+
+  width: 300px; /* Ancho de la ventana */
+
+  display: flex; /* Usa Flexbox */
+  flex-direction: column; /* Coloca los elementos uno debajo del otro */
+  gap: 12px; /* Espacio entre elementos */
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra */
+}
+
+/* Logo del login */
+.logop{
+  width: 180px; /* Ancho */
+  height: auto; /* Conserva proporción */
+
+  display: block; /* Se comporta como bloque */
+  margin: 0 auto 15px auto; /* Lo centra horizontalmente */
+}
+
+/* Texto del login */
+.text{
+  color: white; /* Color blanco */
+}
+
+/* Campos de texto */
+.casilla{
+  background-color: #355670; /* Color de fondo */
+}
+
+/* Contenedor de botones */
+.buttons {
+  display: flex; /* Usa Flexbox */
+  flex-direction: column; /* Botones en columna */
+  align-items: center; /* Centra los botones */
+  gap: 15px; /* Espacio entre botones */
+}
+
+/* Contenedor de "Olvidaste tu contraseña" */
+.forgot {
+  text-align: center; /* Centra el texto */
+}
+
+/* Botón principal */
+.Ing {
+  background-color: #F39C12; /* Fondo naranja */
+  width: 200px; /* Ancho fijo */
+  padding: 10px; /* Espacio interno */
+  border-radius: 20px; /* Bordes redondeados */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cursor de mano */
+}
+
+/* Botón secundario */
+.for{
+  background-color: #C0C0C0; /* Fondo gris */
+  width: 200px; /* Ancho fijo */
+  padding: 10px; /* Espacio interno */
+  border-radius: 20px; /* Bordes redondeados */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cursor de mano */
+}

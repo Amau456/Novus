@@ -1,0 +1,96 @@
+<!-- Barra de navegación -->
+<nav class="navbar">
+
+  <!-- Contenedor del logo -->
+  <div class="logo">
+
+    <!-- Imagen del logo -->
+    <img src="assets/Imagenes/Logo.png" alt="logo">
+
+  </div>
+
+  <!-- Menú principal -->
+<ul class="menu">
+  <li><a routerLink="/home">Inicio</a></li>
+  <li><a routerLink="/inicio">Catálogo</a></li>
+  <li><a routerLink="/contactanos">Contáctanos</a></li>
+  <li><a routerLink="/reservas">Reservas</a></li>
+  <li><a routerLink="/mecanico">Mecánico</a></li>
+</ul>
+  <!-- Botón que abre la ventana emergente del login -->
+
+
+  <button class="btn" (click)="openLogin()">
+    Iniciar sesión
+  </button>
+
+</nav>
+pero comentado por favor
+
+Claro. Este sería el final de tu layout.html comentado. Todo lo que estaba duplicado al final debes eliminarlo, y el archivo debe terminar así:
+
+<!-- Aquí Angular carga el componente correspondiente a la ruta seleccionada -->
+<router-outlet></router-outlet>
+
+<!--
+  Ventana emergente (modal) del login.
+  Solo se muestra cuando la variable isLoginOpen es true.
+-->
+<div class="overlay" *ngIf="isLoginOpen">
+
+  <!-- Contenedor principal del formulario -->
+  <div class="modal">
+
+    <!-- Logo que aparece dentro del login -->
+    <img class="logop" src="assets/Imagenes/Logo1.png" alt="Logo">
+
+    <!-- Título del formulario -->
+    <h2 class="text">Iniciar Sesión</h2>
+
+    <!-- Campo para escribir el usuario -->
+    <input
+      class="casilla"
+      type="text"
+      placeholder="Usuario">
+
+    <!-- Campo para escribir la contraseña -->
+    <input
+      class="casilla"
+      type="password"
+      placeholder="Contraseña">
+
+    <!-- Contenedor de los botones -->
+    <div class="buttons">
+
+      <!-- Botón para iniciar sesión -->
+      <button class="Ing">
+        Ingresar al Sistema
+      </button>
+
+      <!-- Botón para cerrar la ventana -->
+      <button
+        class="Ing"
+        (click)="closeLogin()">
+        Cerrar
+      </button>
+
+      <!-- Sección para recuperar contraseña -->
+      <div class="forgot">
+
+        <!-- Mensaje para el usuario -->
+        <h3 class="text">
+          ¿Olvidaste tu contraseña?
+        </h3>
+
+        <!-- Botón para recuperación de contraseña -->
+        <button class="for">
+          Haz clic aquí
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

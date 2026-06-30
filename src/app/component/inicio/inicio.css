@@ -1,0 +1,198 @@
+:host {
+    display: block;
+    min-height: 100vh;
+
+    background-image: url('/assets/Imagenes/Fondo3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding-top: 80px;
+}
+
+
+.Texto{
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+
+.dashboard{
+    display: grid;
+
+    grid-template-columns: 3fr 2.4fr 1fr;
+
+    /* Primera fila grande, dos pequeñas */
+    grid-template-rows: 260px 90px 90px;
+
+    gap: 15px;
+
+    padding: 20px;
+}
+
+.panel{
+
+    background: linear-gradient(
+        to bottom,
+        #2a5d72,
+        #21495a
+    );
+
+    border: 2px solid #39d9ff;
+
+    border-radius: 15px;
+
+    color: white;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    transition: .3s;
+}
+
+.panel:hover{
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 0 20px rgba(0,255,255,.35);
+
+}
+
+
+.panel h2{
+
+    margin: 0;
+
+    margin-bottom: 15px;
+
+    padding-bottom: 8px;
+
+    font-size: 22px;
+
+    color: white;
+
+    border-bottom: 2px solid #2ec9e8;
+
+}
+
+
+.lista{
+
+    grid-column: 1;
+
+    grid-row: 1;
+
+}
+
+
+.datos{
+
+    grid-column: 2;
+
+    grid-row: 1;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    padding: 0;
+
+    overflow: hidden;
+
+}
+
+.historial{
+    grid-column: 3;
+    grid-row: 1;
+
+    height: 120px;
+}
+
+.preferencias{
+    grid-column: 3;
+    grid-row: 2;
+
+    height: 120px;
+}
+.busqueda{
+    grid-column:1;
+    grid-row:2 / 4;
+}
+/* Detalles */
+
+.detalles{
+
+    grid-column: 2;
+
+    grid-row: 2 / 4;
+
+}
+
+
+.perfil{
+
+    padding: 20px;
+
+    border-right: 2px solid #39d9ff;
+
+}
+
+
+.criterios{
+
+    padding: 20px;
+
+}
+
+.criterios label{
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    cursor: pointer;
+
+}
+
+
+@media (max-width:1000px){
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+        grid-template-rows:auto;
+
+    }
+
+    .lista,
+    .datos,
+    .historial,
+    .busqueda,
+    .detalles,
+    .preferencias{
+
+        grid-column:auto;
+
+        grid-row:auto;
+
+    }
+
+    .datos{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .perfil{
+
+        border-right:none;
+
+        border-bottom:2px solid #39d9ff;
+
+    }
+
+}
