@@ -1,95 +1,227 @@
-<!-- Barra de navegación -->
 <nav class="navbar">
-
-  <!-- Contenedor del logo -->
   <div class="logo">
 
-    <!-- Imagen del logo -->
-    <img src="assets/Imagenes/Logo.png" alt="logo">
+    <img src="assets/Imagenes/Logo.png" alt="Logo">
 
   </div>
+  <ul class="menu">
 
-  <!-- Menú principal -->
-<ul class="menu">
-  <li><a routerLink="/home">Inicio</a></li>
-  <li><a routerLink="/inicio">Catálogo</a></li>
-  <li><a routerLink="/contactanos">Contáctanos</a></li>
-  <li><a routerLink="/reservas">Reservas</a></li>
-  <li><a routerLink="/mecanico">Mecánico</a></li>
-</ul>
-  <!-- Botón que abre la ventana emergente del login -->
+ 
+    <li>
+      <a routerLink="/home">Inicio</a>
+    </li>
+
+   
+    <li>
+      <a routerLink="/inicio">Catálogo</a>
+    </li>
+
+    
+    <li>
+      <a routerLink="/contactanos">Contáctanos</a>
+    </li>
+
+  
+    <li>
+      <a routerLink="/reservas">Reservas</a>
+    </li>
+
+  
+    <li>
+      <a routerLink="/mecanico">Mecánico</a>
+    </li>
+
+  </ul>
 
 
-  <button class="btn" (click)="openLogin()">
+  <button
+    class="btn"
+    (click)="openLogin()">
+
     Iniciar sesión
+
   </button>
 
 </nav>
-pero comentado por favor
 
-Claro. Este sería el final de tu layout.html comentado. Todo lo que estaba duplicado al final debes eliminarlo, y el archivo debe terminar así:
 
-<!-- Aquí Angular carga el componente correspondiente a la ruta seleccionada -->
 <router-outlet></router-outlet>
 
-<!--
-  Ventana emergente (modal) del login.
-  Solo se muestra cuando la variable isLoginOpen es true.
--->
-<div class="overlay" *ngIf="isLoginOpen">
 
-  <!-- Contenedor principal del formulario -->
+<div
+  class="overlay"
+  *ngIf="isLoginOpen">
+
+
   <div class="modal">
 
-    <!-- Logo que aparece dentro del login -->
-    <img class="logop" src="assets/Imagenes/Logo1.png" alt="Logo">
+   
+    <img
+      class="logop"
+      src="assets/Imagenes/Logo1.png"
+      alt="Logo">
 
-    <!-- Título del formulario -->
-    <h2 class="text">Iniciar Sesión</h2>
+   
 
-    <!-- Campo para escribir el usuario -->
-    <input
-      class="casilla"
-      type="text"
-      placeholder="Usuario">
+    <h2
+      class="text"
+      *ngIf="modo === 'login'">
 
-    <!-- Campo para escribir la contraseña -->
-    <input
-      class="casilla"
-      type="password"
-      placeholder="Contraseña">
+      Iniciar Sesión
 
-    <!-- Contenedor de los botones -->
-    <div class="buttons">
+    </h2>
 
-      <!-- Botón para iniciar sesión -->
-      <button class="Ing">
-        Ingresar al Sistema
-      </button>
+    <h2
+      class="text"
+      *ngIf="modo === 'registro'">
 
-      <!-- Botón para cerrar la ventana -->
-      <button
-        class="Ing"
-        (click)="closeLogin()">
-        Cerrar
-      </button>
+      Registrarse
 
-      <!-- Sección para recuperar contraseña -->
-      <div class="forgot">
+    </h2>
 
-        <!-- Mensaje para el usuario -->
-        <h3 class="text">
-          ¿Olvidaste tu contraseña?
-        </h3>
+  
+    <div *ngIf="modo === 'login'">
 
-        <!-- Botón para recuperación de contraseña -->
-        <button class="for">
-          Haz clic aquí
+    
+      <input
+        class="casilla"
+        type="email"
+        placeholder="Correo">
+
+      
+      <input
+        class="casilla"
+        type="password"
+        placeholder="Contraseña">
+
+     
+      <div class="buttons">
+
+        
+        <button class="Ing">
+
+          Ingresar al Sistema
+
+        </button>
+
+       
+        <button
+          class="Ing"
+          (click)="closeLogin()">
+
+          Cerrar
+
+        </button>
+
+       
+        <div class="forgot">
+
+          <h3 class="text">
+
+            ¿No tienes cuenta?
+
+          </h3>
+
+          <button
+            class="for"
+            (click)="cambiarRegistro()">
+
+            Registrarse
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div *ngIf="modo === 'registro'">
+
+      <input
+        class="casilla"
+        type="text"
+        placeholder="Nombre"
+        [(ngModel)]="registro.nombre">
+
+     
+      <input
+        class="casilla"
+        type="text"
+        placeholder="Apellido paterno"
+        [(ngModel)]="registro.ap_pat">
+
+      
+      <input
+        class="casilla"
+        type="text"
+        placeholder="Apellido materno"
+        [(ngModel)]="registro.ap_mat">
+
+     
+      <input
+        class="casilla"
+        type="email"
+        placeholder="Correo electrónico"
+        [(ngModel)]="registro.correo">
+
+     
+      <input
+        class="casilla"
+        type="tel"
+        placeholder="Teléfono"
+        [(ngModel)]="registro.telefono">
+
+     
+      <input
+        class="casilla"
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="registro.contrasena">
+
+      <div class="buttons">
+
+    
+        <button
+          class="Ing"
+          (click)="registrarUsuario()">
+
+          Crear cuenta
+
+        </button>
+
+      
+        <button
+          class="Ing"
+          (click)="cambiarLogin()">
+
+          Volver al Login
+
+        </button>
+
+       
+        <button
+          class="Ing"
+          (click)="closeLogin()">
+
+          Cerrar
+
         </button>
 
       </div>
 
     </div>
+
+   
+    <p
+      class="text"
+      *ngIf="mensaje">
+
+      {{ mensaje }}
+
+    </p>
 
   </div>
 
