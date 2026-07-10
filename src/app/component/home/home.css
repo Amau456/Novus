@@ -1,37 +1,168 @@
-:host {
-  display: block;
-  min-height: 100vh;
-
-  background-image: url('/assets/Imagenes/Fondo1.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  padding-top: 80px; 
-}
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Contenedor Principal de la sección de Bienvenida */
+.hero-container {
+  position: relative;
+  min-height: calc(100vh - 60px); /* Ajusta al alto de pantalla descontando un menú promedio */
   width: 100%;
-  height: 100%;
-
-  background: rgba(0,0,0,0.6);
-
   display: flex;
+  align-items: center;
   justify-content: center;
+  /* Fondo oscuro azulado simulando el taller mecánico del mockup */
+  background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), 
+              url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?q=80&w=1920') no-repeat center center/cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  overflow: hidden;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Contenedor de Contenido en rejilla flexible */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2f;
+  grid-template-columns: 55% 40%;
+  gap: 5%;
   align-items: center;
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
+/* --- BLOQUE IZQUIERDO (CONÓCENOS) --- */
+.info-block {
+  display: flex;
+  flex-direction: column;
 }
-.texto{
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.main-description {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #ccd6f6;
+  margin-bottom: 40px;
+}
+
+/* Rejilla para las 3 tarjetas inferiores */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
-  color: #FFFFFF;
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-card .icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 0.82rem;
+  color: #8892b0;
+  line-height: 1.4;
+}
+
+/* --- BLOQUE DERECHO (TARJETA CORPORATIVA REEMPLAZO LOGIN) --- */
+.corporate-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.logo-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.logo-header .subtitle {
+  font-size: 0.85rem;
+  color: #4ac4f3; /* Tono azul brillante para resaltar */
+  margin-top: 5px;
+}
+
+.corporate-body {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  font-size: 45x; 
+}
+
+.info-section h4 {
+  font-size: 0.95rem;
+  color: #ff9f43; /* Tono naranja similar a los botones de tu mockup */
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-section p {
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsividad para pantallas medianas o celulares */
+@media (max-width: 968px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .main-title {
+    font-size: 2.2rem;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 }
