@@ -25,6 +25,7 @@ export class Layout {
   /*Como el formulario se mostrara */
   modo:'login'|'registro'='login';
  
+  usuario: any = null;
   /*Se crea un objeto */
   login = {
 
@@ -35,6 +36,7 @@ export class Layout {
   };
    
   mensaje = '';
+
 registro ={
   nombre:'',
   ap_pat:'',
@@ -45,9 +47,15 @@ registro ={
 };
 
   /*Constructor  */
-  constructor(private http:HttpClient){}
+constructor(private http: HttpClient) {
 
- 
+  const datosUsuario = localStorage.getItem('usuario');
+
+  if (datosUsuario) {
+    this.usuario = JSON.parse(datosUsuario);
+  }
+
+}
 
   /*Abre el login */
   openLogin() {
@@ -63,6 +71,24 @@ registro ={
     this.isLoginOpen = false;
 
   }
+  cerrarSesion() {
+
+  /* Elimina los datos guardados */
+  localStorage.removeItem('usuario');
+
+  /* El usuario deja de existir en Angular */
+  this.usuario = null;
+
+  /* Limpia el formulario de login */
+  this.login = {
+    correo: '',
+    contrasena: ''
+  };
+
+  /* Limpia cualquier mensaje */
+  this.mensaje = '';
+
+}
   cambiarRegistro(){
     this.modo = 'registro';
     this.mensaje = '';
@@ -88,7 +114,7 @@ this.login.contrasena === ''
   /*Usa la herramienta httpclient */
   this.http
   /*Peticion de tipo post y la direccion donde los recibe */  
-  .post<any>('http//localhost/NovusApi/login.php',
+  .post<any>('http://localhost/NovusAPI/login.php',
     /*Objeto  */  
     this.login
     )
@@ -100,20 +126,27 @@ this.login.contrasena === ''
         this.mensaje = res.mensaje;
         /*Si el login fue correcto */
         if (res.success) {
-          /*Guarda datos del usuario en el navegador  */
-          localStorage.setItem(
-            'usuario',
-            /*Convierte el objeto en texto */
-            JSON.stringify(res.usuario)
-          );
 
-          this.login = {
-            correo: '',
-            contrasena: ''
-          };
+  /* Guarda los datos del usuario en el navegador */
+  localStorage.setItem(
+    'usuario',
 
-          this.closeLogin();
-        }
+    /* Convierte el objeto en texto */
+    JSON.stringify(res.usuario)
+  );
+
+  /* Guarda al usuario también en la variable de Angular */
+  this.usuario = res.usuario;
+
+  /* Limpia los campos del login */
+  this.login = {
+    correo: '',
+    contrasena: ''
+  };
+
+  /* Cierra el modal */
+  this.closeLogin();
+}
       },
 
       error: () => {

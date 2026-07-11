@@ -31,20 +31,46 @@
     </li>
 
     <li>
-      <a routerLink="/mecanico">Mecánico</a>
+      <li *ngIf="usuario && usuario.id_rol !== 4">
+  <a routerLink="/mecanico">Mecánico</a>
+
     </li>
 
   </ul>
 
   <!-- Botón que abre el modal -->
-  <button
+<button
     class="btn"
+    *ngIf="!usuario"
     (click)="openLogin()">
 
     Iniciar sesión
 
+</button>
+
+<!-- Si existe una sesión -->
+<div
+  class="usuario"
+  *ngIf="usuario">
+
+  <span class="material-icons">
+    account_circle
+  </span>
+
+  <span>
+    {{ usuario.nombre }}
+  </span>
+
+  <!-- Botón para cerrar sesión -->
+  <button
+    class="btnSalir"
+    (click)="cerrarSesion()">
+
+    Cerrar sesión
+
   </button>
 
+</div>
 </nav>
 
 <!-- Aquí Angular muestra el componente de la ruta activa -->

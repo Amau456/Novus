@@ -152,3 +152,53 @@
   border: none; /* Sin borde */
   cursor: pointer; /* Cursor de mano */
 }
+
+.usuario{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.usuario .material-icons{
+
+    font-size:34px;
+
+}
+
+.btnSalir{
+
+    margin-left:15px;
+
+    padding:8px 15px;
+
+    border:none;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    background:#d32f2f;
+
+    color:white;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.btnSalir:hover{
+
+    background:#b71c1c;
+
+}
