@@ -1,39 +1,42 @@
+
 <nav class="navbar">
+
+  <!-- Contenedor del logotipo -->
   <div class="logo">
 
-    <img src="assets/Imagenes/Logo.png" alt="Logo">
+    <!-- Imagen del logotipo -->
+    <img
+      src="assets/Imagenes/Logo.png"
+      alt="Logo de Novus">
 
   </div>
+
+  <!-- Menú principal -->
   <ul class="menu">
 
- 
     <li>
       <a routerLink="/home">Inicio</a>
     </li>
 
-   
     <li>
       <a routerLink="/inicio">Catálogo</a>
     </li>
 
-    
     <li>
       <a routerLink="/contactanos">Contáctanos</a>
     </li>
 
-  
     <li>
       <a routerLink="/reservas">Reservas</a>
     </li>
 
-  
     <li>
       <a routerLink="/mecanico">Mecánico</a>
     </li>
 
   </ul>
 
-
+  <!-- Botón que abre el modal -->
   <button
     class="btn"
     (click)="openLogin()">
@@ -44,67 +47,67 @@
 
 </nav>
 
-
+<!-- Aquí Angular muestra el componente de la ruta activa -->
 <router-outlet></router-outlet>
 
 
+
+<!--
+  El modal solo aparece cuando
+  isLoginOpen es igual a true.
+-->
 <div
   class="overlay"
   *ngIf="isLoginOpen">
 
-
+  <!-- Contenedor principal -->
   <div class="modal">
 
-   
+    <!-- Logo dentro del modal -->
     <img
       class="logop"
       src="assets/Imagenes/Logo1.png"
-      alt="Logo">
+      alt="Logo de Novus">
 
    
-
-    <h2
-      class="text"
-      *ngIf="modo === 'login'">
-
-      Iniciar Sesión
-
-    </h2>
-
-    <h2
-      class="text"
-      *ngIf="modo === 'registro'">
-
-      Registrarse
-
-    </h2>
-
-  
+    <!--
+      Este bloque solo se muestra cuando
+      modo es igual a login.
+    -->
     <div *ngIf="modo === 'login'">
 
-    
+      <!-- Título -->
+      <h2 class="text">
+        Iniciar sesión
+      </h2>
+
+      <!-- Campo de correo -->
       <input
         class="casilla"
         type="email"
-        placeholder="Correo">
+        placeholder="Correo"
+        [(ngModel)]="login.correo">
 
-      
+      <!-- Campo de contraseña -->
       <input
         class="casilla"
         type="password"
-        placeholder="Contraseña">
+        placeholder="Contraseña"
+        [(ngModel)]="login.contrasena">
 
-     
+      <!-- Contenedor de botones -->
       <div class="buttons">
 
-        
-        <button class="Ing">
+        <!-- Ejecuta iniciarSesion() -->
+        <button
+          class="Ing"
+          (click)="iniciarSesion()">
 
-          Ingresar al Sistema
+          Ingresar al sistema
 
         </button>
 
-       
+        <!-- Cierra el modal -->
         <button
           class="Ing"
           (click)="closeLogin()">
@@ -113,20 +116,18 @@
 
         </button>
 
-       
+        <!-- Cambia al formulario de registro -->
         <div class="forgot">
 
           <h3 class="text">
-
-            ¿No tienes cuenta?
-
+            ¿No tienes una cuenta?
           </h3>
 
           <button
             class="for"
             (click)="cambiarRegistro()">
 
-            Registrarse
+            Regístrate aquí
 
           </button>
 
@@ -136,54 +137,65 @@
 
     </div>
 
-    
-
+   
+    <!--
+      Este bloque solo se muestra cuando
+      modo es igual a registro.
+    -->
     <div *ngIf="modo === 'registro'">
 
+      <!-- Título -->
+      <h2 class="text">
+        Crear cuenta
+      </h2>
+
+      <!-- Nombre -->
       <input
         class="casilla"
         type="text"
         placeholder="Nombre"
         [(ngModel)]="registro.nombre">
 
-     
+      <!-- Apellido paterno -->
       <input
         class="casilla"
         type="text"
         placeholder="Apellido paterno"
         [(ngModel)]="registro.ap_pat">
 
-      
+      <!-- Apellido materno -->
       <input
         class="casilla"
         type="text"
         placeholder="Apellido materno"
         [(ngModel)]="registro.ap_mat">
 
-     
+      <!-- Correo -->
       <input
         class="casilla"
         type="email"
         placeholder="Correo electrónico"
         [(ngModel)]="registro.correo">
 
-     
+      <!-- Teléfono -->
       <input
         class="casilla"
         type="tel"
         placeholder="Teléfono"
+        maxlength="10"
         [(ngModel)]="registro.telefono">
 
-     
+      <!-- Contraseña -->
       <input
         class="casilla"
         type="password"
         placeholder="Contraseña"
         [(ngModel)]="registro.contrasena">
 
+      <!-- Contenedor de botones -->
       <div class="buttons">
 
-    
+        <!-- Ejecuta registrarUsuario() -->
         <button
           class="Ing"
           (click)="registrarUsuario()">
@@ -192,16 +204,16 @@
 
         </button>
 
-      
+        <!-- Regresa al login -->
         <button
           class="Ing"
           (click)="cambiarLogin()">
 
-          Volver al Login
+          Volver al login
 
         </button>
 
-       
+        <!-- Cierra el modal -->
         <button
           class="Ing"
           (click)="closeLogin()">
@@ -215,6 +227,10 @@
     </div>
 
    
+    <!--
+      Solo aparece cuando mensaje
+      contiene algún texto.
+    -->
     <p
       class="text"
       *ngIf="mensaje">
