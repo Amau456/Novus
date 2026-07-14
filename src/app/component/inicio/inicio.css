@@ -22,16 +22,14 @@
 .dashboard{
     display: grid;
 
-    grid-template-columns: 3fr 2.4fr 1fr;
+    grid-template-columns: 3fr 2.4fr;
 
-    /* Primera fila grande, dos pequeñas */
     grid-template-rows: 260px 90px 90px;
 
     gap: 15px;
 
     padding: 20px;
 }
-
 .panel{
 
     background: linear-gradient(
@@ -85,38 +83,22 @@
 
     grid-row: 1;
 
-}
+    overflow-y: auto;
 
+}
 
 .datos{
-
     grid-column: 2;
-
     grid-row: 1;
 
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
 
     padding: 0;
-
     overflow: hidden;
-
 }
 
-.historial{
-    grid-column: 3;
-    grid-row: 1;
 
-    height: 120px;
-}
-
-.preferencias{
-    grid-column: 3;
-    grid-row: 2;
-
-    height: 120px;
-}
 .busqueda{
     grid-column:1;
     grid-row:2 / 4;
@@ -133,66 +115,115 @@
 
 
 .perfil{
-
     padding: 20px;
+    border-bottom: 2px solid #39d9ff;
+}
 
-    border-right: 2px solid #39d9ff;
+.lista h2{
+
+    position: sticky;
+
+    top: 0;
+
+    background: #2a5d72;
+
+    padding: 10px 0;
 
 }
 
 
-.criterios{
 
+
+
+.historial-usuario{
     padding: 20px;
+    border-bottom: 2px solid #39d9ff;
+}
+
+.preferencias-usuario{
+    padding: 20px;
+}
+
+.refaccion{
+
+    border-bottom: 1px solid rgba(255,255,255,.3);
+
+    padding: 10px 0;
 
 }
 
-.criterios label{
+.refaccion h3{
 
-    display: block;
+    margin: 0 0 8px;
 
-    margin-bottom: 10px;
+    color: #39d9ff;
+
+}
+
+.refaccion p{
+
+    margin: 4px 0;
+
+}
+
+
+.contenedor-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.input-busqueda {
+    flex: 1;
+
+    padding: 13px 16px;
+
+    border: 2px solid #39d9ff;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.input-busqueda::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-busqueda:focus {
+    background: rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 0 12px rgba(57, 217, 255, 0.6);
+}
+
+.btn-buscar {
+    padding: 13px 25px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #39d9ff;
+
+    color: #123442;
+    font-size: 16px;
+    font-weight: bold;
 
     cursor: pointer;
 
+    transition: 0.3s;
 }
 
+.btn-buscar:hover {
+    transform: translateY(-2px);
 
-@media (max-width:1000px){
+    background: #7be8ff;
 
-    .dashboard{
-
-        grid-template-columns:1fr;
-
-        grid-template-rows:auto;
-
-    }
-
-    .lista,
-    .datos,
-    .historial,
-    .busqueda,
-    .detalles,
-    .preferencias{
-
-        grid-column:auto;
-
-        grid-row:auto;
-
-    }
-
-    .datos{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .perfil{
-
-        border-right:none;
-
-        border-bottom:2px solid #39d9ff;
-
-    }
-
+    box-shadow: 0 0 15px rgba(57, 217, 255, 0.6);
 }
+

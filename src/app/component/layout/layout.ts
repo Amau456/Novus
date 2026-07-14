@@ -71,12 +71,12 @@ constructor(private http: HttpClient) {
     this.isLoginOpen = false;
 
   }
-  cerrarSesion() {
+ cerrarSesion() {
 
   /* Elimina los datos guardados */
   localStorage.removeItem('usuario');
 
-  /* El usuario deja de existir en Angular */
+  /* El usuario deja de existir en Layout */
   this.usuario = null;
 
   /* Limpia el formulario de login */
@@ -88,7 +88,10 @@ constructor(private http: HttpClient) {
   /* Limpia cualquier mensaje */
   this.mensaje = '';
 
+  /* Recarga para que Inicio vuelva a leer localStorage */
+  window.location.reload();
 }
+
   cambiarRegistro(){
     this.modo = 'registro';
     this.mensaje = '';
@@ -146,7 +149,11 @@ this.login.contrasena === ''
 
   /* Cierra el modal */
   this.closeLogin();
+   window.location.reload();
 }
+
+
+ 
       },
 
       error: () => {

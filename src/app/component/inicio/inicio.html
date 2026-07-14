@@ -7,13 +7,37 @@
 <div class="dashboard">
 
     <!-- Lista de refacciones -->
-    <div class="panel lista">
+ <div class="panel lista">
 
-        <h2>Filtros y Lista de Refacciones</h2>
+    <h2>Filtros y Lista de Refacciones</h2>
+
+    <div
+        class="refaccion"
+        *ngFor="let refaccion of refaccionesFiltradas"
+        (click)="seleccionarRefaccion(refaccion)">
+
+        <h3>
+            {{ refaccion.nombre_pieza }}
+        </h3>
+
+        <p>
+            Marca compatible: {{ refaccion.marca_compatible }}
+        </p>
+
+        <p>
+            Precio: ${{ refaccion.precio_unitario }}
+        </p>
+
+        <p>
+            Stock disponible: {{ refaccion.stock_disponible }}
+        </p>
 
     </div>
 
-    <!-- Mis datos + Mis criterios -->
+</div>
+
+
+    <!-- Panel con información del usuario -->
     <div class="panel datos">
 
         <!-- Mis datos -->
@@ -21,65 +45,133 @@
 
             <h2>Mis Datos</h2>
 
-            <!-- Aquí después irá la foto -->
+            <!-- Si existe un usuario -->
+            <div *ngIf="usuario">
 
-            <p>Nombre:</p>
+                <p>
+                    Nombre: {{ usuario.nombre }}
+                </p>
 
-            <p>Correo:</p>
+                <p>
+                    Correo: {{ usuario.correo }}
+                </p>
 
-            <p>Teléfono:</p>
+                <p>
+                    Teléfono: {{ usuario.telefono }}
+                </p>
 
-        </div>
+            </div>
 
-        <!-- Criterios -->
-        <div class="criterios">
+            <!-- Si no existe un usuario -->
+            <div *ngIf="!usuario">
 
-            <h2>Mis Criterios de Búsqueda</h2>
+                <p>
+                    Debes iniciar sesión para acceder a esta sección.
+                </p>
 
-            <label>
-                <input type="checkbox">
-               1
-            </label>
-
-            <label>
-                <input type="checkbox">
-               2
-            </label>
-
-            <label>
-                <input type="checkbox">
-               3
-            </label>
+            </div>
 
         </div>
 
+
+        <!-- Historial de consultas -->
+        <div class="historial-usuario">
+
+            <h2>Historial de Consultas</h2>
+
+            <p>
+                Aquí aparecerán las refacciones consultadas.
+            </p>
+
+        </div>
+
+
+        <!-- Preferencias de compra -->
+        <div class="preferencias-usuario">
+
+            <h2>Preferencias de Compra</h2>
+
+            <p>
+                Aquí aparecerán las preferencias del usuario.
+            </p>
+
+        </div>
+
     </div>
 
-    <!-- Historial -->
-    <div class="panel historial">
 
-        <h2>Historial de Consultas</h2>
+<!-- Búsqueda avanzada -->
+<div class="panel busqueda">
+
+    <h2>Búsqueda Avanzada y Asignación</h2>
+
+    <div class="contenedor-busqueda">
+
+        <input
+            class="input-busqueda"
+            type="text"
+            placeholder="Buscar refacción"
+            [(ngModel)]="busqueda">
+
+        <button
+            class="btn-buscar"
+            type="button"
+            (click)="buscarRefacciones()">
+
+            Buscar
+
+        </button>
 
     </div>
 
-    <!-- Preferencias -->
-    <div class="panel preferencias">
-
-        <h2>Preferencias de Compra</h2>
-
-    </div>
-
-    <!-- Búsqueda -->
-    <div class="panel busqueda">
-
-        <h2>Búsqueda Avanzada y Asignación</h2>
-
-    </div>
+</div>
 
     <!-- Detalles -->
-    <div class="panel detalles">
+  <div class="panel detalles">
 
-        <h2>Detalles de Refacción Seleccionada</h2>
+    <h2>Detalles de Refacción Seleccionada</h2>
+
+    <div
+        class="sin-seleccion"
+        *ngIf="!refaccionSeleccionada">
+
+        <p>
+            Selecciona una refacción de la lista para consultar su información.
+        </p>
+
+    </div>
+
+    <div
+        class="detalle-refaccion"
+        *ngIf="refaccionSeleccionada">
+
+        <h3>
+            {{ refaccionSeleccionada.nombre_pieza }}
+        </h3>
+
+        <div class="dato-detalle">
+            <span class="etiqueta">Marca compatible</span>
+
+            <span>
+                {{ refaccionSeleccionada.marca_compatible }}
+            </span>
+        </div>
+
+        <div class="dato-detalle">
+            <span class="etiqueta">Precio</span>
+
+            <span>
+                ${{ refaccionSeleccionada.precio_unitario }}
+            </span>
+        </div>
+
+        <div class="dato-detalle">
+            <span class="etiqueta">Stock disponible</span>
+
+            <span>
+                {{ refaccionSeleccionada.stock_disponible }} piezas
+            </span>
+        </div>
 
     </div>
 
