@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './home.css'
 })
 export class Home {
-  // Al llamarse 'Home' coincidirá con lo que tus rutas ya están buscando automáticamente
 }

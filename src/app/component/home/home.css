@@ -1,35 +1,36 @@
-/* Contenedor Principal de la sección de Bienvenida */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)),
+              url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?q=80&w=1920') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
 .hero-container {
   position: relative;
-  min-height: calc(100vh - 60px); /* Ajusta al alto de pantalla descontando un menú promedio */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Fondo oscuro azulado simulando el taller mecánico del mockup */
-  background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), 
-              url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?q=80&w=1920') no-repeat center center/cover;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
   overflow: hidden;
   padding: 40px 20px;
   box-sizing: border-box;
 }
 
-/* Contenedor de Contenido en rejilla flexible */
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 1200px;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.2f;
   grid-template-columns: 55% 40%;
   gap: 5%;
   align-items: center;
 }
 
-/* --- BLOQUE IZQUIERDO (CONÓCENOS) --- */
 .info-block {
   display: flex;
   flex-direction: column;
@@ -50,7 +51,6 @@
   margin-bottom: 40px;
 }
 
-/* Rejilla para las 3 tarjetas inferiores */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -90,7 +90,6 @@
   line-height: 1.4;
 }
 
-/* --- BLOQUE DERECHO (TARJETA CORPORATIVA REEMPLAZO LOGIN) --- */
 .corporate-card {
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(15px);
@@ -128,7 +127,7 @@
 
 .logo-header .subtitle {
   font-size: 0.85rem;
-  color: #4ac4f3; /* Tono azul brillante para resaltar */
+  color: #4ac4f3;
   margin-top: 5px;
 }
 
@@ -140,7 +139,7 @@
 
 .info-section h4 {
   font-size: 0.95rem;
-  color: #ff9f43; /* Tono naranja similar a los botones de tu mockup */
+  color: #ff9f43;
   margin: 0 0 5px 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -153,7 +152,6 @@
   margin: 0;
 }
 
-/* Responsividad para pantallas medianas o celulares */
 @media (max-width: 968px) {
   .hero-content {
     grid-template-columns: 1fr;

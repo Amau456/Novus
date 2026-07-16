@@ -1,194 +1,76 @@
 :host {
     display: block;
     min-height: 100vh;
-
     background-image: url('/assets/Imagenes/Fondo3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     padding-top: 80px;
 }
 
-
-.Texto{
+.Texto {
     text-align: center;
     color: #FFFFFF;
     font-size: 45px;
     margin-bottom: 20px;
 }
 
-
-.dashboard{
+.dashboard {
     display: grid;
-
     grid-template-columns: 3fr 2.4fr;
-
-    grid-template-rows: 260px 90px 90px;
-
+    grid-template-rows: 260px minmax(90px, auto) minmax(90px, auto);
     gap: 15px;
-
     padding: 20px;
 }
-.panel{
 
-    background: linear-gradient(
-        to bottom,
-        #2a5d72,
-        #21495a
-    );
-
+.panel {
+    background: linear-gradient(to bottom, #2a5d72, #21495a);
     border: 2px solid #39d9ff;
-
     border-radius: 15px;
-
     color: white;
-
     padding: 18px;
-
     box-sizing: border-box;
-
     transition: .3s;
 }
 
-.panel:hover{
-
+.panel:hover {
     transform: translateY(-3px);
-
     box-shadow: 0 0 20px rgba(0,255,255,.35);
-
 }
 
-
-.panel h2{
-
+.panel h2 {
     margin: 0;
-
     margin-bottom: 15px;
-
     padding-bottom: 8px;
-
     font-size: 22px;
-
     color: white;
-
     border-bottom: 2px solid #2ec9e8;
-
 }
 
-
-.lista{
-
+.lista {
     grid-column: 1;
-
-    grid-row: 1;
-
-    overflow-y: auto;
-
-}
-
-.datos{
-    grid-column: 2;
-    grid-row: 1;
-
+    grid-row: 1 / 4;
     display: flex;
     flex-direction: column;
-
-    padding: 0;
     overflow: hidden;
 }
-
-
-.busqueda{
-    grid-column:1;
-    grid-row:2 / 4;
-}
-/* Detalles */
-
-.detalles{
-
-    grid-column: 2;
-
-    grid-row: 2 / 4;
-
-}
-
-
-.perfil{
-    padding: 20px;
-    border-bottom: 2px solid #39d9ff;
-}
-
-.lista h2{
-
-    position: sticky;
-
-    top: 0;
-
-    background: #2a5d72;
-
-    padding: 10px 0;
-
-}
-
-
-
-
-
-.historial-usuario{
-    padding: 20px;
-    border-bottom: 2px solid #39d9ff;
-}
-
-.preferencias-usuario{
-    padding: 20px;
-}
-
-.refaccion{
-
-    border-bottom: 1px solid rgba(255,255,255,.3);
-
-    padding: 10px 0;
-
-}
-
-.refaccion h3{
-
-    margin: 0 0 8px;
-
-    color: #39d9ff;
-
-}
-
-.refaccion p{
-
-    margin: 4px 0;
-
-}
-
 
 .contenedor-busqueda {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 .input-busqueda {
     flex: 1;
-
     padding: 13px 16px;
-
     border: 2px solid #39d9ff;
     border-radius: 10px;
-
     background: rgba(255, 255, 255, 0.12);
-
     color: white;
     font-size: 16px;
-
     outline: none;
-
     transition: 0.3s;
 }
 
@@ -198,32 +80,95 @@
 
 .input-busqueda:focus {
     background: rgba(255, 255, 255, 0.2);
-
     box-shadow: 0 0 12px rgba(57, 217, 255, 0.6);
 }
 
 .btn-buscar {
     padding: 13px 25px;
-
     border: none;
     border-radius: 10px;
-
     background: #39d9ff;
-
     color: #123442;
     font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
 .btn-buscar:hover {
     transform: translateY(-2px);
-
     background: #7be8ff;
-
     box-shadow: 0 0 15px rgba(57, 217, 255, 0.6);
 }
 
+.contenedor-items {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.contenedor-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contenedor-items::-webkit-scrollbar-thumb {
+    background: #39d9ff;
+    border-radius: 10px;
+}
+
+.contenedor-items::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+.refaccion {
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.refaccion h3 {
+    margin: 0 0 8px;
+    color: #39d9ff;
+}
+
+.refaccion p {
+    margin: 4px 0;
+}
+
+.datos {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+.detalles {
+    grid-column: 2;
+    grid-row: 2 / 4;
+}
+
+.perfil {
+    padding: 20px;
+    border-bottom: 2px solid #39d9ff;
+}
+
+.historial-usuario {
+    padding: 20px;
+    border-bottom: 2px solid #39d9ff;
+}
+
+.preferencias-usuario {
+    padding: 20px;
+}
+
+.dato-detalle {
+    margin-bottom: 10px;
+}
+
+.etiqueta {
+    font-weight: bold;
+    color: #39d9ff;
+    margin-right: 8px;
+}
