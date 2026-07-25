@@ -1,1 +1,351 @@
-<p>mecanico works!</p>
+<div class="mecanico-page">
+
+  <section class="encabezado-mecanico">
+    <h1>Panel del Mecánico</h1>
+
+    <p>
+      Consulta las citas disponibles y toma una reserva para comenzar el servicio.
+    </p>
+  </section>
+
+  <section class="panel-principal">
+
+    <!-- Lista de reservas -->
+    <div class="panel reservas-panel">
+
+      <div class="panel-titulo">
+        <div>
+          <h2>Reservas disponibles</h2>
+          <p>{{ reservas.length }} citas registradas</p>
+        </div>
+
+        <span class="material-icons">
+          event_available
+        </span>
+      </div>
+
+      <!-- Sin reservas -->
+      <div
+        class="sin-reservas"
+        *ngIf="reservas.length === 0">
+
+        <span class="material-icons">
+          event_busy
+        </span>
+
+        <h3>No hay reservas disponibles</h3>
+
+        <p>
+          Por el momento no existen citas pendientes.
+        </p>
+
+      </div>
+
+      <!-- Lista -->
+      <div
+        class="lista-reservas"
+        *ngIf="reservas.length > 0">
+
+        <article
+          class="tarjeta-reserva"
+          *ngFor="let reserva of reservas"
+          [class.reserva-activa]="
+            reservaSeleccionada?.id_reserva === reserva.id_reserva
+          "
+          (click)="seleccionarReserva(reserva)">
+
+          <div class="reserva-superior">
+
+            <div>
+              <span class="numero-reserva">
+                Reserva #{{ reserva.id_reserva }}
+              </span>
+
+              <h3>{{ reserva.nombre }}</h3>
+            </div>
+
+            <span
+              class="estado-reserva"
+              [class.estado-pendiente]="reserva.estado === 'Pendiente'"
+              [class.estado-ocupada]="reserva.estado === 'Ocupada'">
+
+              {{ reserva.estado }}
+
+            </span>
+
+          </div>
+
+          <div class="datos-reserva">
+
+            <div class="dato">
+              <span class="material-icons">directions_car</span>
+
+              <div>
+                <small>Vehículo</small>
+                <strong>
+                  {{ reserva.marca_vehiculo }}
+                  {{ reserva.modelo_vehiculo }}
+                </strong>
+              </div>
+            </div>
+
+            <div class="dato">
+              <span class="material-icons">build</span>
+
+              <div>
+                <small>Servicio</small>
+                <strong>{{ reserva.servicio }}</strong>
+              </div>
+            </div>
+
+            <div class="dato">
+              <span class="material-icons">calendar_month</span>
+
+              <div>
+                <small>Fecha</small>
+                <strong>{{ reserva.fecha }}</strong>
+              </div>
+            </div>
+
+            <div class="dato">
+              <span class="material-icons">schedule</span>
+
+              <div>
+                <small>Hora</small>
+                <strong>{{ reserva.hora }}</strong>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+    <!-- Detalles -->
+    <div class="panel detalle-panel">
+
+      <div class="panel-titulo">
+        <div>
+          <h2>Detalles de la cita</h2>
+
+          <p>
+            Información completa de la reserva seleccionada
+          </p>
+        </div>
+
+        <span class="material-icons">
+          assignment
+        </span>
+      </div>
+
+      <!-- Sin selección -->
+      <div
+        class="sin-seleccion"
+        *ngIf="!reservaSeleccionada">
+
+        <span class="material-icons">
+          touch_app
+        </span>
+
+        <h3>Selecciona una reserva</h3>
+
+        <p>
+          Haz clic sobre una cita para consultar sus detalles.
+        </p>
+
+      </div>
+
+      <!-- Reserva seleccionada -->
+      <div
+        class="detalle-reserva"
+        *ngIf="reservaSeleccionada">
+
+        <div class="cliente-principal">
+
+          <span class="material-icons">
+            account_circle
+          </span>
+
+          <div>
+            <small>Cliente</small>
+            <h3>{{ reservaSeleccionada.nombre }}</h3>
+          </div>
+
+        </div>
+
+        <div class="detalle-grid">
+
+          <div class="detalle-item">
+            <span>Teléfono</span>
+            <strong>
+              {{ reservaSeleccionada.telefono }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Correo</span>
+            <strong>
+              {{ reservaSeleccionada.correo || 'No disponible' }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Marca</span>
+            <strong>
+              {{ reservaSeleccionada.marca_vehiculo }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Modelo</span>
+            <strong>
+              {{ reservaSeleccionada.modelo_vehiculo }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Año</span>
+            <strong>
+              {{ reservaSeleccionada.anio_vehiculo }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Servicio</span>
+            <strong>
+              {{ reservaSeleccionada.servicio }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Fecha</span>
+            <strong>
+              {{ reservaSeleccionada.fecha }}
+            </strong>
+          </div>
+
+          <div class="detalle-item">
+            <span>Hora</span>
+            <strong>
+              {{ reservaSeleccionada.hora }}
+            </strong>
+          </div>
+
+        </div>
+
+        <div class="descripcion-reserva">
+          <span>Descripción del problema</span>
+
+          <p>
+            {{
+              reservaSeleccionada.descripcion ||
+              'El cliente no agregó una descripción.'
+            }}
+          </p>
+        </div>
+
+        <!-- Solo el mecánico puede tomar una reserva pendiente -->
+        <button
+          class="btn-tomar-reserva"
+          type="button"
+          *ngIf="
+            usuario?.id_rol === 2 &&
+            reservaSeleccionada.estado === 'Pendiente'
+          "
+          (click)="tomarReserva()">
+
+          <span class="material-icons">
+            engineering
+          </span>
+
+          Tomar reserva
+
+        </button>
+
+        <!-- Solo el mecánico asignado puede finalizarla -->
+        <button
+          class="btn-finalizar-reserva"
+          type="button"
+          *ngIf="
+            
+            reservaSeleccionada.estado === 'Ocupada' &&
+            reservaSeleccionada.id_mecanico === usuario?.id_usuario
+          "
+          (click)="finalizarReserva()">
+
+          <span class="material-icons">
+            task_alt
+          </span>
+
+          Finalizar reparación
+
+        </button>
+
+        <!-- El administrador puede consultar, pero no tomar -->
+        <div
+          class="modo-admin"
+          *ngIf="usuario?.id_rol === 1">
+
+          <span class="material-icons">
+            visibility
+          </span>
+
+          <p>
+            Vista administrativa: puedes consultar la reserva,
+            pero solo un mecánico puede tomarla o finalizarla.
+          </p>
+
+        </div>
+
+        <!-- Reserva ocupada por otro mecánico -->
+        <div
+          class="reserva-no-disponible"
+          *ngIf="
+            usuario?.id_rol === 2 &&
+            reservaSeleccionada.estado === 'Ocupada' &&
+            reservaSeleccionada.id_mecanico !== usuario?.id_usuario
+          ">
+
+          <span class="material-icons">
+            lock
+          </span>
+
+          <p>
+            Esta reserva ya fue tomada por otro mecánico.
+          </p>
+
+        </div>
+
+        <!-- Reserva finalizada -->
+        <div
+          class="reserva-finalizada"
+          *ngIf="reservaSeleccionada.estado === 'Finalizada'">
+
+          <span class="material-icons">
+            check_circle
+          </span>
+
+          <p>
+            Esta reparación ya fue finalizada.
+          </p>
+
+        </div>
+
+      </div>
+
+      <p
+        class="mensaje-mecanico"
+        *ngIf="mensaje">
+
+        {{ mensaje }}
+
+      </p>
+
+    </div>
+
+  </section>
+
+</div>
