@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { Carrito } from '../../services/carrito';
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -16,6 +16,7 @@ export class Layout {
   modo: 'login' | 'registro' = 'login';
   usuario: any = null;
   mensaje = '';
+  productosCarrito: any[] = [];
 
   login = {
     correo: '',
@@ -31,12 +32,22 @@ export class Layout {
     contrasena: ''
   };
 
-  constructor(private http: HttpClient) {
-    const datosUsuario = localStorage.getItem('usuario');
-    if (datosUsuario) {
-      this.usuario = JSON.parse(datosUsuario);
-    }
+  constructor(
+  private http: HttpClient,
+  private carrito: Carrito
+) {
+  const datosUsuario = localStorage.getItem('usuario');
+
+  if (datosUsuario) {
+    this.usuario = JSON.parse(datosUsuario);
   }
+
+  this.carrito.productos$.subscribe(
+    productos => {
+      this.productosCarrito = productos;
+    }
+  );
+}
 
   openLogin() {
     this.isLoginOpen = true;
@@ -120,4 +131,58 @@ export class Layout {
         }
       });
   }
+
+/*Carrito */
+isCarritoOpen = false;
+
+openCarrito() {
+  this.isCarritoOpen = true;
+
+
+}
+
+closeCarrito() {
+  this.isCarritoOpen = false;
+}
+aumentarCantidad(producto: any) {
+  this.carrito.aumentarCantidad(
+    producto.id_refaccion
+  );
+}
+
+disminuirCantidad(producto: any) {
+  this.carrito.disminuirCantidad(
+    producto.id_refaccion
+  );
+}
+
+eliminarProducto(producto: any) {
+  this.carrito.eliminarProducto(
+    producto.id_refaccion
+  );
+}
+calcularTotal() {
+
+  return this.productosCarrito.reduce(
+
+    (total, producto) =>
+
+      total +
+      Number(producto.precio_unitario) *
+      producto.cantidad,
+
+    0
+
+  );
+
+}
+procederCompra() {
+  if (this.productosCarrito.length === 0) {
+    return;
+  }
+
+  this.carrito.prepararCompra(
+    this.productosCarrito
+  );
+}
 }

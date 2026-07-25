@@ -1,1 +1,227 @@
-<p>reservas works!</p>
+
+<div class="reservas-container">
+
+  
+  <div class="reservas-header">
+
+    <h1>Reserva una cita en NOVUS</h1>
+
+    <p>
+      Agenda una revisión o servicio para tu vehículo sin necesidad
+      de crear una cuenta.
+    </p>
+
+  </div>
+
+  
+  <div class="formulario-reserva">
+
+   
+    <div class="campo">
+
+      <label for="nombre">
+        Nombre completo *
+      </label>
+
+      <input
+        id="nombre"
+        type="text"
+        placeholder="Escribe tu nombre"
+        [(ngModel)]="reserva.nombre">
+
+    </div>
+
+   
+    <div class="campo">
+
+      <label for="telefono">
+        Teléfono *
+      </label>
+
+      <input
+        id="telefono"
+        type="tel"
+        maxlength="10"
+        placeholder="10 dígitos"
+        [(ngModel)]="reserva.telefono">
+
+    </div>
+
+  
+    <div class="campo">
+
+      <label for="correo">
+        Correo electrónico
+      </label>
+
+      <input
+        id="correo"
+        type="email"
+        placeholder="correo@ejemplo.com"
+        [(ngModel)]="reserva.correo">
+
+    </div>
+
+  
+    <div class="campo">
+
+      <label for="marca">
+        Marca del vehículo *
+      </label>
+
+      <input
+        id="marca"
+        type="text"
+        placeholder="Ejemplo: Nissan"
+        [(ngModel)]="reserva.marca_vehiculo">
+
+    </div>
+
+  
+    <div class="campo">
+
+      <label for="modelo">
+        Modelo del vehículo *
+      </label>
+
+      <input
+        id="modelo"
+        type="text"
+        placeholder="Ejemplo: Versa"
+        [(ngModel)]="reserva.modelo_vehiculo">
+
+    </div>
+
+    
+    <div class="campo">
+
+      <label for="anio">
+        Año del vehículo *
+      </label>
+
+      <input
+        id="anio"
+        type="number"
+        min="1950"
+        max="2026"
+        placeholder="Ejemplo: 2020"
+        [(ngModel)]="reserva.anio_vehiculo">
+
+    </div>
+
+    
+    <div class="campo campo-completo">
+
+      <label for="servicio">
+        Servicio solicitado *
+      </label>
+
+      <select
+        id="servicio"
+        [(ngModel)]="reserva.servicio">
+
+        <option value="">
+          Selecciona un servicio
+        </option>
+
+        <option value="Chequeo general">
+          Chequeo general
+        </option>
+
+        <option value="Diagnóstico">
+          Diagnóstico
+        </option>
+
+        <option value="Cambio de aceite">
+          Cambio de aceite
+        </option>
+
+        <option value="Frenos">
+          Revisión de frenos
+        </option>
+
+        <option value="Suspensión">
+          Revisión de suspensión
+        </option>
+
+        <option value="Sistema eléctrico">
+          Sistema eléctrico
+        </option>
+
+        <option value="Otro">
+          Otro
+        </option>
+
+      </select>
+
+    </div>
+
+   
+    <div class="campo">
+
+      <label for="fecha">
+        Fecha deseada *
+      </label>
+
+      <input
+        id="fecha"
+        type="date"
+        [(ngModel)]="reserva.fecha">
+
+    </div>
+
+    
+    <div class="campo">
+
+      <label for="hora">
+        Hora deseada *
+      </label>
+
+      <input
+        id="hora"
+        type="time"
+        [(ngModel)]="reserva.hora">
+
+    </div>
+
+    
+    <div class="campo campo-completo">
+
+      <label for="descripcion">
+        Descripción del problema
+      </label>
+
+      <textarea
+        id="descripcion"
+        rows="5"
+        placeholder="Describe el problema o los síntomas del vehículo"
+        [(ngModel)]="reserva.descripcion">
+      </textarea>
+
+    </div>
+
+   
+    <div class="acciones campo-completo">
+
+      <button
+        type="button"
+        (click)="crearReserva()">
+
+        Agendar cita
+
+      </button>
+
+    </div>
+
+  
+    <p
+      class="mensaje"
+      *ngIf="mensaje">
+
+      {{ mensaje }}
+
+    </p>
+
+  </div>
+
+</div>

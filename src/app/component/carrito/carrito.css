@@ -1,0 +1,68 @@
+:host {
+  display: block;
+  min-height: 100vh;
+
+  padding-top: 100px;
+
+  background-image:
+    linear-gradient(
+      rgba(4, 18, 30, 0.65),
+      rgba(4, 18, 30, 0.8)
+    ),
+    url('/assets/Imagenes/Fondo3.jpg');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: white;
+
+  box-sizing: border-box;
+}
+
+.carrito-container {
+  width: min(100% - 30px, 1000px);
+
+  margin: 0 auto;
+  padding: 30px;
+
+  background: rgba(31, 79, 98, 0.93);
+
+  border: 2px solid #39d9ff;
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.4);
+
+  box-sizing: border-box;
+}
+
+.carrito-container h1 {
+  margin: 0 0 25px;
+
+  text-align: center;
+  font-size: 38px;
+
+  border-bottom: 2px solid #39d9ff;
+  padding-bottom: 15px;
+}
+
+.mensaje-sesion,
+.contenido-carrito {
+  padding: 35px;
+
+  text-align: center;
+
+  background: rgba(8, 36, 48, 0.55);
+
+  border: 1px solid rgba(57, 217, 255, 0.55);
+  border-radius: 14px;
+}
+
+.mensaje-sesion h2,
+.contenido-carrito h2 {
+  margin-top: 0;
+
+  color: #39d9ff;
+}

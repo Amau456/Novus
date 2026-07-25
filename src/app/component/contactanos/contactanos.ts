@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './contactanos.css',
 })
 export class Contactanos {
-  // Al llamarse 'Contactanos' coincidirá exactamente con lo que tus rutas buscan
+
 }

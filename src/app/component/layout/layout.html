@@ -1,76 +1,396 @@
 <nav class="navbar">
+
   <div class="logo">
-    <img src="assets/Imagenes/Logo.png" alt="Logo de Novus">
+    <img
+      src="assets/Imagenes/Logo.png"
+      alt="Logo de Novus">
   </div>
 
   <ul class="menu">
-    <li><a routerLink="/home">Inicio</a></li>
-    <li><a routerLink="/inicio">Catálogo</a></li>
-    <li><a routerLink="/contactanos">Contáctanos</a></li>
-    <li><a routerLink="/reservas">Reservas</a></li>
+
+    <li>
+      <a routerLink="/home">Inicio</a>
+    </li>
+
+    <li>
+      <a routerLink="/inicio">Catálogo</a>
+    </li>
+
+    <li>
+      <a routerLink="/contactanos">Contáctanos</a>
+    </li>
+
+    <li>
+      <a routerLink="/reservas">Reservas</a>
+    </li>
+
     <li *ngIf="usuario && usuario.id_rol !== 4">
       <a routerLink="/mecanico">Mecánico</a>
     </li>
+
   </ul>
 
-  <button class="btn" *ngIf="!usuario" (click)="openLogin()">
-    Iniciar sesión
-  </button>
+  <!-- Botones del lado derecho -->
+  <div class="acciones-navbar">
 
-  <div class="usuario" *ngIf="usuario">
-    <span class="material-icons">account_circle</span>
-    <span>{{ usuario.nombre }}</span>
-    <button class="btnSalir" (click)="cerrarSesion()">Cerrar sesión</button>
+    <!-- Abre la ventana lateral del carrito -->
+    <button
+      class="btn-carrito-navbar"
+      type="button"
+      (click)="openCarrito()">
+
+      <span class="material-icons">
+        shopping_cart
+      </span>
+
+      <span>Carrito</span>
+
+    </button>
+
+    <!-- Solo aparece cuando no existe una sesión -->
+    <button
+      class="btn"
+      type="button"
+      *ngIf="!usuario"
+      (click)="openLogin()">
+
+      Iniciar sesión
+
+    </button>
+
+    <!-- Solo aparece cuando existe una sesión -->
+    <div
+      class="usuario"
+      *ngIf="usuario">
+
+      <span class="material-icons">
+        account_circle
+      </span>
+
+      <span>
+        {{ usuario.nombre }}
+      </span>
+
+      <button
+        class="btnSalir"
+        type="button"
+        (click)="cerrarSesion()">
+
+        Cerrar sesión
+
+      </button>
+
+    </div>
+
   </div>
+
 </nav>
+
 
 <router-outlet></router-outlet>
 
-<div class="overlay" *ngIf="isLoginOpen" (click)="closeLogin()">
-  
-  <div class="modal" (click)="$event.stopPropagation()">
-    
-    <button class="btn-cerrar-x" (click)="closeLogin()" title="Cerrar">
-      <span class="material-icons">close</span>
+
+<div
+  class="overlay"
+  *ngIf="isLoginOpen"
+  (click)="closeLogin()">
+
+  <div
+    class="modal"
+    (click)="$event.stopPropagation()">
+
+    <button
+      class="btn-cerrar-x"
+      type="button"
+      title="Cerrar"
+      (click)="closeLogin()">
+
+      <span class="material-icons">
+        close
+      </span>
+
     </button>
 
-    <img class="logop" src="assets/Imagenes/Logo1.png" alt="Logo de Novus">
-   
-    <div class="form-container" *ngIf="modo === 'login'">
-      <h2 class="text">Iniciar sesión</h2>
-      
-      <input class="casilla" type="email" placeholder="Correo" [(ngModel)]="login.correo">
-      <input class="casilla" type="password" placeholder="Contraseña" [(ngModel)]="login.contrasena">
-      
+    <img
+      class="logop"
+      src="assets/Imagenes/Logo1.png"
+      alt="Logo de Novus">
+
+    <!-- Formulario de inicio de sesión -->
+    <div
+      class="form-container"
+      *ngIf="modo === 'login'">
+
+      <h2 class="text">
+        Iniciar sesión
+      </h2>
+
+      <input
+        class="casilla"
+        type="email"
+        placeholder="Correo"
+        [(ngModel)]="login.correo">
+
+      <input
+        class="casilla"
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="login.contrasena">
+
       <div class="buttons">
-        <button class="Ing" (click)="iniciarSesion()">Ingresar al sistema</button>
-        <button class="btn-secundario" (click)="closeLogin()">Cancelar</button>
-        
+
+        <button
+          class="Ing"
+          type="button"
+          (click)="iniciarSesion()">
+
+          Ingresar al sistema
+
+        </button>
+
+        <button
+          class="btn-secundario"
+          type="button"
+          (click)="closeLogin()">
+
+          Cancelar
+
+        </button>
+
         <div class="forgot">
-          <span class="text-small">¿No tienes una cuenta?</span>
-          <button class="for" (click)="cambiarRegistro()">Regístrate aquí</button>
+
+          <span class="text-small">
+            ¿No tienes una cuenta?
+          </span>
+
+          <button
+            class="for"
+            type="button"
+            (click)="cambiarRegistro()">
+
+            Regístrate aquí
+
+          </button>
+
         </div>
+
       </div>
+
     </div>
-   
-    <div class="form-container" *ngIf="modo === 'registro'">
-      <h2 class="text">Crear cuenta</h2>
-      
-      <input class="casilla" type="text" placeholder="Nombre" [(ngModel)]="registro.nombre">
-      <input class="casilla" type="text" placeholder="Apellido paterno" [(ngModel)]="registro.ap_pat">
-      <input class="casilla" type="text" placeholder="Apellido materno" [(ngModel)]="registro.ap_mat">
-      <input class="casilla" type="email" placeholder="Correo electrónico" [(ngModel)]="registro.correo">
-      <input class="casilla" type="tel" placeholder="Teléfono" maxlength="10" [(ngModel)]="registro.telefono">
-      <input class="casilla" type="password" placeholder="Contraseña" [(ngModel)]="registro.contrasena">
-      
+
+    <!-- Formulario de registro -->
+    <div
+      class="form-container"
+      *ngIf="modo === 'registro'">
+
+      <h2 class="text">
+        Crear cuenta
+      </h2>
+
+      <input
+        class="casilla"
+        type="text"
+        placeholder="Nombre"
+        [(ngModel)]="registro.nombre">
+
+      <input
+        class="casilla"
+        type="text"
+        placeholder="Apellido paterno"
+        [(ngModel)]="registro.ap_pat">
+
+      <input
+        class="casilla"
+        type="text"
+        placeholder="Apellido materno"
+        [(ngModel)]="registro.ap_mat">
+
+      <input
+        class="casilla"
+        type="email"
+        placeholder="Correo electrónico"
+        [(ngModel)]="registro.correo">
+
+      <input
+        class="casilla"
+        type="tel"
+        placeholder="Teléfono"
+        maxlength="10"
+        [(ngModel)]="registro.telefono">
+
+      <input
+        class="casilla"
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="registro.contrasena">
+
       <div class="buttons">
-        <button class="Ing" (click)="registrarUsuario()">Crear cuenta</button>
-        <button class="btn-secundario" (click)="cambiarLogin()">Volver al login</button>
+
+        <button
+          class="Ing"
+          type="button"
+          (click)="registrarUsuario()">
+
+          Crear cuenta
+
+        </button>
+
+        <button
+          class="btn-secundario"
+          type="button"
+          (click)="cambiarLogin()">
+
+          Volver al login
+
+        </button>
+
       </div>
+
     </div>
-   
-    <p class="mensaje-alerta" *ngIf="mensaje">
+
+    <p
+      class="mensaje-alerta"
+      *ngIf="mensaje">
+
       {{ mensaje }}
+
     </p>
+
   </div>
+
+</div>
+
+
+
+<div
+  class="overlay-carrito"
+  *ngIf="isCarritoOpen"
+  (click)="closeCarrito()">
+
+  <aside
+    class="carrito-lateral"
+    (click)="$event.stopPropagation()">
+
+    <div class="carrito-header">
+
+      <div class="titulo-carrito">
+
+        <span class="material-icons">
+          shopping_cart
+        </span>
+
+        <h2>Mi carrito</h2>
+
+      </div>
+
+      <button
+        class="cerrar-carrito"
+        type="button"
+        title="Cerrar carrito"
+        (click)="closeCarrito()">
+
+        <span class="material-icons">
+          close
+        </span>
+
+      </button>
+
+    </div>
+
+    <!-- Cuando no hay sesión -->
+    <div
+      class="carrito-sin-sesion"
+      *ngIf="!usuario">
+
+      <span class="material-icons icono-carrito-vacio">
+        lock
+      </span>
+
+      <h3>Debes iniciar sesión</h3>
+
+      <p>
+        Inicia sesión para consultar tu carrito y realizar compras.
+      </p>
+
+      <button
+        class="btn-login-carrito"
+        type="button"
+        (click)="closeCarrito(); openLogin()">
+
+        Iniciar sesión
+
+      </button>
+
+    </div>
+
+    <!-- Cuando hay sesión -->
+   <div class="carrito-contenido" *ngIf="usuario">
+
+  <h3>
+    Carrito de {{ usuario.nombre }}
+  </h3>
+
+  <!-- Carrito vacío -->
+  <div
+    class="carrito-vacio"
+    *ngIf="productosCarrito.length === 0">
+
+    <span class="material-icons icono-carrito-vacio">
+      shopping_cart
+    </span>
+
+    <p>
+      Todavía no has agregado refacciones.
+    </p>
+
+  </div>
+
+  <!-- Productos del carrito -->
+<div
+  class="lista-carrito"
+  *ngIf="productosCarrito.length > 0">
+
+  <!-- Productos -->
+  <div
+    class="producto-carrito"
+    *ngFor="let producto of productosCarrito">
+
+    ...
+    <!-- Todo el código del producto -->
+    ...
+
+  </div>
+
+  <!-- Resumen -->
+  <div class="resumen-carrito">
+
+    <div class="total-carrito">
+
+      <span>Total:</span>
+
+      <strong>
+
+        ${{ calcularTotal() }}
+
+      </strong>
+
+    </div>
+
+   <button
+  type="button"
+  class="btn-comprar-carrito"
+  (click)="procederCompra()">
+
+  Proceder a la compra
+
+</button>
+
+  </div>
+
+</div>
+
+</div>
+
+  </aside>
+
 </div>
