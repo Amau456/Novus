@@ -35,7 +35,7 @@ export class Inicio {
 
   obtenerRefacciones() {
     this.http
-      .get<any[]>('http://localhost/NovusAPI/obtener_refacciones.php')
+      .get<any[]>('http://localhost/Novus/obtener_refacciones.php') // Ruta corregida aquí
       .subscribe({
         next: (res) => {
           this.refacciones = res;
@@ -94,26 +94,26 @@ export class Inicio {
     }, 3000);
   }
 
-comprarAhora() {
-  const datosUsuario = localStorage.getItem('usuario');
+  comprarAhora() {
+    const datosUsuario = localStorage.getItem('usuario');
 
-  if (!datosUsuario) {
-    this.mostrarMensaje(
-      'Debes iniciar sesión para realizar una compra'
+    if (!datosUsuario) {
+      this.mostrarMensaje(
+        'Debes iniciar sesión para realizar una compra'
+      );
+      return;
+    }
+
+    if (!this.refaccionSeleccionada) {
+      this.mostrarMensaje(
+        'Selecciona una refacción'
+      );
+      return;
+    }
+
+    this.carrito.comprarAhora(
+      this.refaccionSeleccionada
     );
-    return;
   }
-
-  if (!this.refaccionSeleccionada) {
-    this.mostrarMensaje(
-      'Selecciona una refacción'
-    );
-    return;
-  }
-
-  this.carrito.comprarAhora(
-    this.refaccionSeleccionada
-  );
-}
 
 }

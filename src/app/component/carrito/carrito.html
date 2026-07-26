@@ -3,31 +3,76 @@
   <h1>Mi carrito de compras</h1>
 
   <!-- Sin sesión -->
-  <div
-    class="mensaje-sesion"
-    *ngIf="!usuario">
-
+  <div class="mensaje-sesion" *ngIf="!usuario">
     <h2>Debes iniciar sesión</h2>
-
     <p>
-      Inicia sesión para consultar tu carrito
-      y realizar una compra.
+      Inicia sesión para consultar tu carrito y realizar una compra.
     </p>
-
   </div>
 
   <!-- Con sesión -->
-  <div
-    class="contenido-carrito"
-    *ngIf="usuario">
+  <div class="contenido-carrito" *ngIf="usuario">
 
-    <h2>
-      Carrito de {{ usuario.nombre }}
-    </h2>
+    <h2>Carrito de {{ usuario.nombre }}</h2>
 
-    <p>
-      Todavía no has agregado refacciones.
-    </p>
+    <!-- Carrito vacío -->
+    <div *ngIf="listaProductos.length === 0">
+      <p>Todavía no has agregado refacciones.</p>
+    </div>
+
+    <!-- Carrito con productos -->
+    <div *ngIf="listaProductos.length > 0">
+      
+      <!-- Contador del carrito -->
+      <p class="contador-piezas">
+        Tienes <strong>{{ obtenerTotalPiezas() }}</strong> refacción(es) seleccionada(s):
+      </p>
+
+      <table class="tabla-carrito">
+        <thead>
+          <tr>
+            <th>Refacción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaProductos">
+            <td>{{ item.nombre_pieza || item.nombre }}</td>
+            <td>${{ (item.precio_unitario || item.precio) | number:'1.2-2' }}</td>
+            <td>
+              <button class="btn-cant" (click)="disminuir(item.id_refaccion)">-</button>
+              <span class="cant-num">{{ item.cantidad }}</span>
+              <button class="btn-cant" (click)="aumentar(item.id_refaccion)">+</button>
+            </td>
+            <td>${{ ((item.precio_unitario || item.precio) * item.cantidad) | number:'1.2-2' }}</td>
+            <td>
+              <button class="btn-quitar" (click)="eliminar(item.id_refaccion)">Quitar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Total y Botones requeridos -->
+      <div class="resumen-seccion">
+        <div class="total-box">
+          <span>Total a pagar:</span>
+          <strong class="monto">${{ obtenerTotal() | number:'1.2-2' }} MXN</strong>
+        </div>
+
+        <div class="botones-acciones">
+          <button class="btn-vaciar" (click)="vaciar()">
+            Vaciar carrito
+          </button>
+          <button class="btn-finalizar" (click)="finalizarCompra()">
+            Finalizar compra
+          </button>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 
