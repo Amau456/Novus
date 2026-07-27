@@ -1,153 +1,99 @@
-
 :host {
   display: block;
   min-height: 100vh;
-
   background-image: url('/assets/Imagenes/Fondo3.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
   padding-top: 80px;
   box-sizing: border-box;
 }
 
-
-
 .Texto {
   margin: 0 20px 20px;
-
   text-align: center;
   color: #ffffff;
   font-size: 45px;
-
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-
-
 .dashboard {
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.4fr)
-    minmax(360px, 0.9fr);
-
-  grid-template-rows:
-    330px
-    260px;
-
+  grid-template-columns: minmax(0, 1.4fr) minmax(360px, 0.9fr);
+  grid-template-rows: 330px 260px;
   gap: 14px;
-
   width: 100%;
   padding: 18px;
-
   box-sizing: border-box;
 }
-
-
 
 .panel {
   min-width: 0;
   min-height: 0;
-
   padding: 16px;
-
   color: #ffffff;
-
   background: rgba(42, 93, 114, 0.96);
-
   border: 2px solid #39d9ff;
   border-radius: 16px;
-
   box-sizing: border-box;
   overflow: hidden;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 .mensaje-carrito {
   grid-area: acciones;
-
   width: 100%;
   margin: 10px 0 0;
   padding: 10px 14px;
-
   color: #ffffff;
   text-align: center;
   font-weight: 700;
-
   background: rgba(8, 36, 48, 0.9);
-
   border: 1px solid #39d9ff;
   border-radius: 10px;
-
   box-sizing: border-box;
 }
+
 .panel:hover {
   transform: translateY(-2px);
-
-  box-shadow:
-    0 0 20px rgba(57, 217, 255, 0.3);
+  box-shadow: 0 0 20px rgba(57, 217, 255, 0.3);
 }
 
 .panel h2 {
   margin: 0 0 12px;
-
   padding-bottom: 10px;
-
   border-bottom: 2px solid #39d9ff;
 }
-
-
 
 .lista {
   grid-column: 1;
   grid-row: 1 / 3;
-
   display: flex;
   flex-direction: column;
-
   min-height: 0;
   height: 604px;
 }
 
-
-
 .contenedor-busqueda {
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    90px;
-
+  grid-template-columns: minmax(0, 1fr) 90px;
   gap: 12px;
-
   margin-bottom: 14px;
 }
 
 .input-busqueda {
   width: 100%;
   height: 42px;
-
   padding: 0 14px;
-
   color: #ffffff;
   font-size: 16px;
-
   background: rgba(255, 255, 255, 0.12);
-
   border: 2px solid #39d9ff;
   border-radius: 10px;
-
   outline: none;
   box-sizing: border-box;
-
-  transition:
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .input-busqueda::placeholder {
@@ -156,60 +102,37 @@
 
 .input-busqueda:focus {
   background: rgba(255, 255, 255, 0.2);
-
-  box-shadow:
-    0 0 12px rgba(57, 217, 255, 0.6);
+  box-shadow: 0 0 12px rgba(57, 217, 255, 0.6);
 }
 
 .btn-buscar {
   height: 42px;
-
   padding: 0 16px;
-
   color: #123442;
   font-size: 15px;
   font-weight: bold;
-
   background: #39d9ff;
-
   border: none;
   border-radius: 10px;
-
   cursor: pointer;
-
   box-sizing: border-box;
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-buscar:hover {
   transform: translateY(-2px);
-
   background: #7be8ff;
-
-  box-shadow:
-    0 0 15px rgba(57, 217, 255, 0.6);
+  box-shadow: 0 0 15px rgba(57, 217, 255, 0.6);
 }
-
 
 .contenedor-items {
   flex: 1;
   min-height: 0;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: start;
-
   gap: 12px;
-
   padding-right: 8px;
-
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -228,234 +151,156 @@
   border-radius: 10px;
 }
 
-
-
 .refaccion {
   display: grid;
-
-  grid-template-columns:
-    105px
-    minmax(0, 1fr);
-
-  grid-template-rows:
-    auto auto auto auto;
-
+  grid-template-columns: 105px minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto;
   column-gap: 12px;
   row-gap: 3px;
-
   align-items: center;
-
   min-width: 0;
   min-height: 145px;
-
   padding: 10px;
-
   background: rgba(18, 58, 75, 0.55);
-
   border: 1px solid rgba(57, 217, 255, 0.65);
   border-radius: 12px;
-
   cursor: pointer;
-
   box-sizing: border-box;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .refaccion:hover {
   transform: translateY(-2px);
-
   background: rgba(18, 58, 75, 0.85);
-
-  box-shadow:
-    0 0 12px rgba(57, 217, 255, 0.25);
+  box-shadow: 0 0 12px rgba(57, 217, 255, 0.25);
 }
 
 .imagen-refaccion {
   grid-column: 1;
   grid-row: 1 / 5;
-
   width: 100px;
   height: 100px;
-
   padding: 6px;
-
   object-fit: contain;
-
   background: #ffffff;
-
   border-radius: 9px;
-
   box-sizing: border-box;
 }
 
 .refaccion h3,
 .refaccion p {
   grid-column: 2;
-
   min-width: 0;
-
   overflow-wrap: anywhere;
 }
 
 .refaccion h3 {
   margin: 0 0 4px;
-
   color: #39d9ff;
   font-size: 17px;
 }
 
 .refaccion p {
   margin: 2px 0;
-
   font-size: 14px;
   line-height: 1.25;
 }
 
-
 .datos {
   grid-column: 2;
   grid-row: 1;
-
   display: grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  grid-template-rows:
-    auto
-    auto;
-
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
   padding: 0;
-
   overflow: hidden;
 }
 
 .perfil {
   grid-column: 1 / 3;
-
   padding: 16px;
-
   border-bottom: 2px solid #39d9ff;
 }
 
 .historial-usuario {
   grid-column: 1;
-
   padding: 16px;
-
   border-right: 2px solid #39d9ff;
 }
 
 .preferencias-usuario {
   grid-column: 2;
-
   padding: 16px;
 }
 
 .datos h2 {
   margin: 0 0 12px;
-
   padding-bottom: 10px;
-
   border-bottom: 2px solid #39d9ff;
 }
 
 .datos p {
   margin: 8px 0;
-
   line-height: 1.4;
 }
-
 
 .detalles {
   grid-column: 2;
   grid-row: 2;
-
   min-height: 0;
-
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .sin-seleccion {
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   min-height: 150px;
-
   text-align: center;
-
   color: rgba(255, 255, 255, 0.85);
 }
 
 .detalle-refaccion {
   display: grid;
-
-  grid-template-columns:
-    150px
-    minmax(0, 1fr);
-
+  grid-template-columns: 150px minmax(0, 1fr);
   grid-template-areas:
     "imagen titulo"
     "imagen marca"
     "imagen precio"
     "imagen stock"
     "acciones acciones";
-
   gap: 10px 18px;
-
   align-items: center;
-
   padding-top: 4px;
 }
 
 .imagen-detalle {
   grid-area: imagen;
-
   width: 150px;
   height: 150px;
-
   padding: 10px;
-
   object-fit: contain;
-
   background: #ffffff;
-
   border: 2px solid rgba(57, 217, 255, 0.8);
   border-radius: 12px;
-
   box-sizing: border-box;
-
-  box-shadow:
-    0 0 14px rgba(57, 217, 255, 0.25);
+  box-shadow: 0 0 14px rgba(57, 217, 255, 0.25);
 }
 
 .detalle-refaccion h3 {
   grid-area: titulo;
-
   margin: 0 0 6px;
-
   color: #39d9ff;
   font-size: 23px;
-
   overflow-wrap: anywhere;
 }
 
 .dato-detalle {
   display: flex;
   flex-wrap: wrap;
-
   gap: 6px;
-
   margin: 0;
-
   font-size: 15px;
 }
 
@@ -476,95 +321,95 @@
   font-weight: bold;
 }
 
-
-
 .acciones-refaccion {
   grid-area: acciones;
-
   display: flex;
-
   justify-content: flex-end;
   flex-wrap: wrap;
-
   gap: 12px;
-
   margin-top: 8px;
   padding-top: 12px;
-
   border-top: 1px solid rgba(57, 217, 255, 0.45);
 }
 
 .btn-carrito,
 .btn-comprar {
   min-width: 170px;
-
-  padding: 11px 16px;
-
+  padding: 12px 18px;
   border: none;
   border-radius: 10px;
-
   color: #ffffff;
   font-size: 14px;
   font-weight: bold;
-
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   cursor: pointer;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-carrito {
-  background: #f39c12;
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  border: 1px solid #f39c12;
+  box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
 }
 
 .btn-carrito:hover {
   transform: translateY(-2px);
-
-  background: #ffb02e;
-
-  box-shadow:
-    0 0 14px rgba(243, 156, 18, 0.55);
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  box-shadow: 0 6px 16px rgba(243, 156, 18, 0.5);
 }
 
 .btn-comprar {
-  background: #28a745;
+  min-width: 190px;
+  background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+  border: 2px solid #52d681;
+  box-shadow: 0 4px 15px rgba(0, 176, 155, 0.4);
+  z-index: 1;
+}
+
+.btn-comprar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.btn-comprar:hover::before {
+  left: 100%;
 }
 
 .btn-comprar:hover {
-  transform: translateY(-2px);
-
-  background: #38bf59;
-
-  box-shadow:
-    0 0 14px rgba(40, 167, 69, 0.55);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 176, 155, 0.8);
+  border-color: #ffffff;
 }
 
 .btn-carrito:active,
 .btn-comprar:active {
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.98);
 }
-
-
 
 @media (max-width: 1100px) {
   .dashboard {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
-
   .lista,
   .datos,
   .detalles {
     grid-column: 1;
     grid-row: auto;
   }
-
   .lista {
     height: 600px;
   }
-
   .datos,
   .detalles {
     min-height: 250px;
@@ -575,30 +420,23 @@
   :host {
     padding-top: 70px;
   }
-
   .Texto {
     font-size: 32px;
   }
-
   .dashboard {
     padding: 10px;
   }
-
   .contenedor-items {
     grid-template-columns: 1fr;
   }
-
   .contenedor-busqueda {
     grid-template-columns: 1fr;
   }
-
   .btn-buscar {
     width: 100%;
   }
-
   .detalle-refaccion {
     grid-template-columns: 1fr;
-
     grid-template-areas:
       "imagen"
       "titulo"
@@ -606,18 +444,14 @@
       "precio"
       "stock"
       "acciones";
-
     text-align: center;
   }
-
   .imagen-detalle {
     margin: 0 auto;
   }
-
   .dato-detalle {
     justify-content: center;
   }
-
   .acciones-refaccion {
     justify-content: center;
   }
@@ -625,16 +459,12 @@
 
 @media (max-width: 500px) {
   .refaccion {
-    grid-template-columns:
-      85px
-      minmax(0, 1fr);
+    grid-template-columns: 85px minmax(0, 1fr);
   }
-
   .imagen-refaccion {
     width: 80px;
     height: 80px;
   }
-
   .btn-carrito,
   .btn-comprar {
     width: 100%;
