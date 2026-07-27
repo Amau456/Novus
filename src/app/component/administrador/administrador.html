@@ -1,0 +1,570 @@
+<div class="administrador-page">
+
+  <!-- Encabezado -->
+  <section class="encabezado-admin">
+
+    <h1>Panel de Administración</h1>
+
+    <p>
+      Gestiona proveedores, registra compras y mantén actualizado el inventario de NOVUS.
+    </p>
+
+  </section>
+
+
+  <!-- Mensaje general -->
+  <p
+    class="mensaje-admin"
+    *ngIf="mensaje">
+
+    {{ mensaje }}
+
+  </p>
+
+
+  <section class="paneles-superiores">
+
+   
+
+    <div class="panel panel-formulario">
+
+      <div class="panel-header">
+
+        <div>
+          <h2>Registrar proveedor</h2>
+
+          <p>
+            Agrega una nueva empresa proveedora.
+          </p>
+        </div>
+
+        <span class="material-icons">
+          add_business
+        </span>
+
+      </div>
+
+
+      <form
+        class="formulario-proveedor"
+        (ngSubmit)="registrarProveedor()">
+
+        <div class="campo-formulario">
+
+          <label for="nombreProveedor">
+            Nombre del proveedor
+          </label>
+
+          <input
+            id="nombreProveedor"
+            type="text"
+            name="nombreProveedor"
+            placeholder="Ej. Bosch México"
+            [(ngModel)]="proveedor.nombre">
+
+        </div>
+
+
+        <div class="campo-formulario">
+
+          <label for="telefonoProveedor">
+            Teléfono
+          </label>
+
+          <input
+            id="telefonoProveedor"
+            type="tel"
+            name="telefonoProveedor"
+            placeholder="Ej. 5512345678"
+            maxlength="20"
+            [(ngModel)]="proveedor.telefono">
+
+        </div>
+
+
+        <div class="campo-formulario">
+
+          <label for="correoProveedor">
+            Correo electrónico
+          </label>
+
+          <input
+            id="correoProveedor"
+            type="email"
+            name="correoProveedor"
+            placeholder="proveedor@empresa.com"
+            [(ngModel)]="proveedor.correo">
+
+        </div>
+
+
+        <div class="campo-formulario">
+
+          <label for="direccionProveedor">
+            Dirección
+          </label>
+
+          <textarea
+            id="direccionProveedor"
+            name="direccionProveedor"
+            rows="4"
+            placeholder="Dirección completa del proveedor"
+            [(ngModel)]="proveedor.direccion">
+          </textarea>
+
+        </div>
+
+
+        <button
+          class="btn-guardar-proveedor"
+          type="submit">
+
+          <span class="material-icons">
+            save
+          </span>
+
+          Guardar proveedor
+
+        </button>
+
+      </form>
+
+    </div>
+
+
+ 
+
+    <div class="panel panel-proveedores">
+
+      <div class="panel-header">
+
+        <div>
+          <h2>Proveedores registrados</h2>
+
+          <p>
+            {{ proveedores.length }} proveedores encontrados
+          </p>
+        </div>
+
+        <span class="material-icons">
+          local_shipping
+        </span>
+
+      </div>
+
+
+
+      <div
+        class="sin-datos"
+        *ngIf="proveedores.length === 0">
+
+        <span class="material-icons">
+          inventory_2
+        </span>
+
+        <h3>No hay proveedores registrados</h3>
+
+        <p>
+          Utiliza el formulario para agregar el primer proveedor.
+        </p>
+
+      </div>
+
+
+      <!-- Lista -->
+
+      <div
+        class="lista-proveedores"
+        *ngIf="proveedores.length > 0">
+
+        <article
+          class="tarjeta-proveedor"
+          *ngFor="let item of proveedores"
+          [class.proveedor-activo]="
+            proveedorSeleccionado?.id_proveedor === item.id_proveedor
+          "
+          (click)="seleccionarProveedor(item)">
+
+          <div class="proveedor-superior">
+
+            <div class="icono-proveedor">
+
+              <span class="material-icons">
+                business
+              </span>
+
+            </div>
+
+            <div class="nombre-proveedor">
+
+              <small>
+                Proveedor #{{ item.id_proveedor }}
+              </small>
+
+              <h3>
+                {{ item.nombre }}
+              </h3>
+
+            </div>
+
+            <span
+              class="estado-proveedor"
+              [class.estado-activo]="item.id_esta == 1"
+              [class.estado-inactivo]="item.id_esta != 1">
+
+              {{ item.id_esta == 1 ? 'Activo' : 'Inactivo' }}
+
+            </span>
+
+          </div>
+
+
+          <div class="datos-proveedor">
+
+            <div class="dato-proveedor">
+
+              <span class="material-icons">
+                phone
+              </span>
+
+              <div>
+                <small>Teléfono</small>
+                <strong>{{ item.telefono }}</strong>
+              </div>
+
+            </div>
+
+
+            <div class="dato-proveedor">
+
+              <span class="material-icons">
+                email
+              </span>
+
+              <div>
+                <small>Correo</small>
+                <strong>{{ item.correo }}</strong>
+              </div>
+
+            </div>
+
+
+            <div class="dato-proveedor direccion-proveedor">
+
+              <span class="material-icons">
+                location_on
+              </span>
+
+              <div>
+                <small>Dirección</small>
+                <strong>{{ item.direccion }}</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+ 
+
+  <section class="panel panel-compra">
+
+    <div class="panel-header">
+
+      <div>
+        <h2>Comprar refacciones</h2>
+
+        <p>
+          Registra una compra y aumenta automáticamente el stock.
+        </p>
+      </div>
+
+      <span class="material-icons">
+        shopping_cart_checkout
+      </span>
+
+    </div>
+
+
+    <form
+      class="formulario-compra"
+      (ngSubmit)="comprarRefaccion()">
+
+      <div class="campo-formulario">
+
+        <label for="proveedorCompra">
+          Proveedor
+        </label>
+
+        <select
+          id="proveedorCompra"
+          name="proveedorCompra"
+          [(ngModel)]="compra.id_proveedor">
+
+          <option value="">
+            Selecciona un proveedor
+          </option>
+
+          <option
+            *ngFor="let item of proveedores"
+            [value]="item.id_proveedor">
+
+            {{ item.nombre }}
+
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="campo-formulario">
+
+        <label for="refaccionCompra">
+          Refacción
+        </label>
+
+        <select
+          id="refaccionCompra"
+          name="refaccionCompra"
+          [(ngModel)]="compra.id_refaccion">
+
+          <option value="">
+            Selecciona una refacción
+          </option>
+
+          <option
+            *ngFor="let refaccion of refacciones"
+            [value]="refaccion.id_refaccion">
+
+            {{ refaccion.nombre_pieza }}
+            — Stock actual:
+            {{ refaccion.stock_disponible }}
+
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="campo-formulario">
+
+        <label for="cantidadCompra">
+          Cantidad de piezas
+        </label>
+
+        <input
+          id="cantidadCompra"
+          type="number"
+          name="cantidadCompra"
+          min="1"
+          step="1"
+          placeholder="Ej. 20"
+          [(ngModel)]="compra.cantidad">
+
+      </div>
+
+
+      <div class="campo-formulario">
+
+        <label for="costoCompra">
+          Costo unitario
+        </label>
+
+        <div class="input-precio">
+
+          <span>$</span>
+
+          <input
+            id="costoCompra"
+            type="number"
+            name="costoCompra"
+            min="0.01"
+            step="0.01"
+            placeholder="0.00"
+            [(ngModel)]="compra.costo_unitario">
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="resumen-compra"
+        *ngIf="
+          compra.cantidad !== '' &&
+          compra.costo_unitario !== ''
+        ">
+
+        <span>Total estimado</span>
+
+        <strong>
+          ${{
+            Number(compra.cantidad) *
+            Number(compra.costo_unitario)
+          }}
+        </strong>
+
+      </div>
+
+
+      <button
+        class="btn-registrar-compra"
+        type="submit"
+        [disabled]="
+          proveedores.length === 0 ||
+          refacciones.length === 0
+        ">
+
+        <span class="material-icons">
+          inventory
+        </span>
+
+        Registrar compra y actualizar stock
+
+      </button>
+
+    </form>
+
+  </section>
+
+
+ 
+
+  <section class="panel panel-inventario">
+
+    <div class="panel-header">
+
+      <div>
+        <h2>Inventario actual</h2>
+
+        <p>
+          Consulta las existencias después de registrar una compra.
+        </p>
+      </div>
+
+      <span class="material-icons">
+        warehouse
+      </span>
+
+    </div>
+
+
+    <div
+      class="sin-datos"
+      *ngIf="refacciones.length === 0">
+
+      <span class="material-icons">
+        production_quantity_limits
+      </span>
+
+      <h3>No hay refacciones registradas</h3>
+
+      <p>
+        No fue posible cargar el inventario.
+      </p>
+
+    </div>
+
+
+    <div
+      class="tabla-contenedor"
+      *ngIf="refacciones.length > 0">
+
+      <table class="tabla-inventario">
+
+        <thead>
+
+          <tr>
+            <th>Refacción</th>
+            <th>Marca compatible</th>
+            <th>Precio de venta</th>
+            <th>Stock</th>
+            <th>Estado</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let refaccion of refacciones">
+
+            <td>
+
+              <div class="nombre-refaccion">
+
+                <img
+                  [src]="'assets/Refacciones/' + refaccion.imagen"
+                  [alt]="refaccion.nombre_pieza">
+
+                <strong>
+                  {{ refaccion.nombre_pieza }}
+                </strong>
+
+              </div>
+
+            </td>
+
+            <td>
+              {{ refaccion.marca_compatible }}
+            </td>
+
+            <td>
+              ${{ refaccion.precio_unitario }}
+            </td>
+
+            <td>
+
+              <span
+                class="stock-refaccion"
+                [class.stock-bajo]="
+                  refaccion.stock_disponible <= 5
+                ">
+
+                {{ refaccion.stock_disponible }}
+
+              </span>
+
+            </td>
+
+            <td>
+
+              <span
+                class="estado-stock"
+                [class.estado-stock-bajo]="
+                  refaccion.stock_disponible <= 5
+                "
+                [class.estado-stock-correcto]="
+                  refaccion.stock_disponible > 5
+                ">
+
+                {{
+                  refaccion.stock_disponible <= 5
+                    ? 'Stock bajo'
+                    : 'Disponible'
+                }}
+
+              </span>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</div>

@@ -27,7 +27,9 @@
     <li *ngIf="usuario && usuario.id_rol !== 4">
       <a routerLink="/mecanico">Mecánico</a>
     </li>
-
+  <li *ngIf="usuario?.id_rol === 1 || usuario?.id_rol === 2">
+    <a routerLink="/administrador">Administración</a>
+</li>
   </ul>
 
   <!-- Botones del lado derecho -->
