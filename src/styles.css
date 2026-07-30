@@ -1,3 +1,66 @@
+/* =========================================
+   1. RESET BÁSICO (Súper importante)
+   ========================================= */
+/* Esto asegura que los bordes y rellenos (paddings) no hagan más grandes tus elementos de lo que deberían, evitando que se desborden en celulares */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; /* Puedes cambiar el tipo de letra después */
+  overflow-x: hidden; /* Evita la molesta barra de desplazamiento horizontal en celulares */
+}
+
+
+/* =========================================
+   2. CLASE CONTENEDOR GLOBAL
+   ========================================= */
+/* Puedes usar esta clase class="contenedor" en cualquier archivo HTML de tus componentes para centrar el contenido y darle márgenes seguros */
+.contenedor {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* =========================================
+   3. REGLAS RESPONSIVAS (MEDIA QUERIES)
+   ========================================= */
+
+/* ---> PARA COMPUTADORAS Y LAPTOPS (Pantallas grandes) <--- */
+@media (min-width: 1024px) {
+  .contenedor {
+    max-width: 1000px; /* Evita que el contenido se estire demasiado en monitores grandes */
+  }
+}
+
+/* ---> PARA TABLETS (Pantallas medianas) <--- */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .contenedor {
+    max-width: 750px;
+  }
+}
+
+/* ---> PARA CELULARES (Pantallas pequeñas) <--- */
+@media (max-width: 767px) {
+  /* En celulares, usualmente queremos que todo abarque el 100% del ancho */
+  .contenedor {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  /* Ejemplo: Reducir un poco los títulos en celulares para que quepan bien */
+  h1 {
+    font-size: 24px;
+  }
+  
+  /* Si tienes elementos uno al lado del otro, esta clase los pondrá uno debajo del otro en celular */
+  .columna-responsiva {
+    display: flex;
+    flex-direction: column !important;
+  }
 }
