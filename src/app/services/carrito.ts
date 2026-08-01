@@ -103,4 +103,12 @@ prepararCompra(productos: any[]) {
     }))
   );
 }
+vaciarCarrito() {
+  this.productos = [];
+
+  this.productosSubject.next([]);
+
+  localStorage.removeItem('carrito');
+}
+
 }

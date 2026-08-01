@@ -7,6 +7,9 @@ import { Mecanico } from './component/mecanico/mecanico';
 import { Reservas } from './component/reservas/reservas';
 import { Carrito } from './component/carrito/carrito';
 import { Administrador } from './component/administrador/administrador';
+import { Compra } from './component/compra/compra';
+
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -16,8 +19,8 @@ export const routes: Routes = [
   { path: 'mecanico', component: Mecanico },
   { path: 'reservas', component: Reservas },
   { path: 'carrito', component: Carrito},
-  {path: 'administrador',component: Administrador
-}
+  {path: 'administrador',component: Administrador},
+  {path: 'compra',component:Compra}
 
 
 

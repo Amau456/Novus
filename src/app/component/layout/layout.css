@@ -577,5 +577,53 @@
   font-size: 18px;
 }
 
+.correo-verificacion {
+  margin: 0;
+  color: #39d9ff;
+  text-align: center;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+.correo-verificacion {
+  margin: 4px 0 16px;
 
+  color: #39d9ff;
+  text-align: center;
+  font-weight: 700;
 
+  overflow-wrap: anywhere;
+}
+
+.forgot-password{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:12px;
+
+}
+
+.btn-recuperar{
+
+    background:none;
+
+    border:none;
+
+    color:#39d9ff;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.btn-recuperar:hover{
+
+    color:#66e7ff;
+
+    text-decoration:underline;
+
+}

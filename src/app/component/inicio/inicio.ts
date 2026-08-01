@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Carrito } from '../../services/carrito';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -21,7 +22,8 @@ export class Inicio {
 
   constructor(
     private http: HttpClient,
-    private carrito: Carrito
+    private carrito: Carrito,
+    private router: Router
   ) {
     const datosUsuario = localStorage.getItem('usuario');
 
@@ -34,18 +36,23 @@ export class Inicio {
   }
 
   obtenerRefacciones() {
-    this.http
-      .get<any[]>('http://localhost/Novus/obtener_refacciones.php') // Ruta corregida aquí
-      .subscribe({
-        next: (res) => {
-          this.refacciones = res;
-          this.refaccionesFiltradas = res;
-        },
-        error: () => {
-          console.log('Error al obtener las refacciones');
-        }
-      });
-  }
+  this.http
+    .get<any[]>(
+      'http://localhost/NovusAPI/obtener_refacciones.php'
+    )
+    .subscribe({
+      next: (res) => {
+        this.refacciones = res;
+        this.refaccionesFiltradas = res;
+      },
+
+      error: () => {
+        console.log(
+          'Error al obtener las refacciones'
+        );
+      }
+    });
+}
 
   buscarRefacciones() {
     const texto = this.busqueda.toLowerCase().trim();
@@ -95,25 +102,22 @@ export class Inicio {
   }
 
   comprarAhora() {
-    const datosUsuario = localStorage.getItem('usuario');
 
-    if (!datosUsuario) {
-      this.mostrarMensaje(
-        'Debes iniciar sesión para realizar una compra'
-      );
-      return;
-    }
-
-    if (!this.refaccionSeleccionada) {
-      this.mostrarMensaje(
-        'Selecciona una refacción'
-      );
-      return;
-    }
-
-    this.carrito.comprarAhora(
-      this.refaccionSeleccionada
-    );
+  if (!this.refaccionSeleccionada) {
+    this.mensaje = 'Selecciona una refacción';
+    return;
   }
+
+  if (!this.usuario) {
+    this.mensaje = 'Debes iniciar sesión';
+    return;
+  }
+
+  this.carrito.comprarAhora(
+    this.refaccionSeleccionada
+  );
+
+  this.router.navigate(['/compra']);
+}
 
 }

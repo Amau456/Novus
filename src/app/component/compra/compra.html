@@ -1,0 +1,186 @@
+<div class="compra-page">
+
+  <section class="encabezado-compra">
+
+    <h1>Confirmar compra</h1>
+
+    <p>
+      Revisa tus productos antes de finalizar la compra.
+    </p>
+
+  </section>
+
+  <div class="contenedor-compra">
+
+    <!-- Lista de productos -->
+    <section class="panel lista-productos">
+
+      <div class="panel-titulo">
+
+        <h2>Productos seleccionados</h2>
+
+        <span class="material-icons">
+          shopping_cart
+        </span>
+
+      </div>
+
+      <!-- Sin productos -->
+      <div
+        class="sin-productos"
+        *ngIf="productos.length === 0">
+
+        <span class="material-icons">
+          remove_shopping_cart
+        </span>
+
+        <h3>No hay productos</h3>
+
+        <p>
+          No existen productos para comprar.
+        </p>
+
+      </div>
+
+      <!-- Productos -->
+      <div
+        class="lista"
+        *ngIf="productos.length > 0">
+
+        <article
+          class="producto"
+          *ngFor="let producto of productos">
+
+          <img
+            [src]="'assets/Refacciones/' + producto.imagen"
+            [alt]="producto.nombre_pieza">
+
+          <div class="info-producto">
+
+            <h3>
+              {{ producto.nombre_pieza }}
+            </h3>
+
+            <p>
+
+              Precio:
+
+              <strong>
+
+                ${{ producto.precio_unitario }}
+
+              </strong>
+
+            </p>
+
+            <p>
+
+              Cantidad:
+
+              <strong>
+
+                {{ producto.cantidad }}
+
+              </strong>
+
+            </p>
+
+            <p>
+
+              Subtotal:
+
+              <strong>
+
+                ${{ producto.precio_unitario * producto.cantidad }}
+
+              </strong>
+
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- Resumen -->
+    <section class="panel resumen-compra">
+
+      <div class="panel-titulo">
+
+        <h2>Resumen</h2>
+
+        <span class="material-icons">
+          receipt_long
+        </span>
+
+      </div>
+
+      <div class="resumen">
+
+        <div class="fila">
+
+          <span>Productos:</span>
+
+          <strong>
+
+            {{ productos.length }}
+
+          </strong>
+
+        </div>
+
+        <div class="fila">
+
+          <span>Total:</span>
+
+          <strong class="total">
+
+            ${{ calcularTotal() }}
+
+          </strong>
+
+        </div>
+
+      </div>
+
+      <button
+        class="btn-finalizar"
+        type="button"
+        [disabled]="productos.length === 0"
+        (click)="finalizarCompra()">
+
+        <span class="material-icons">
+
+          task_alt
+
+        </span>
+
+        Finalizar compra
+
+      </button>
+
+      <button
+        class="btn-cancelar"
+        type="button"
+        routerLink="/inicio">
+
+        Seguir comprando
+
+      </button>
+
+      <p
+        class="mensaje"
+        *ngIf="mensaje">
+
+        {{ mensaje }}
+
+      </p>
+
+    </section>
+
+  </div>
+
+</div>

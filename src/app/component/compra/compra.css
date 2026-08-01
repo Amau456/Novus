@@ -1,0 +1,323 @@
+:host{
+
+    display:block;
+    min-height:100vh;
+
+    background-image:url("/assets/Imagenes/Fondo3.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    padding:120px 40px 40px;
+
+    box-sizing:border-box;
+
+}
+
+.compra-page{
+
+    max-width:1400px;
+    margin:auto;
+
+}
+
+.encabezado-compra{
+
+    margin-bottom:30px;
+
+}
+
+.encabezado-compra h1{
+
+    color:#fff;
+    font-size:38px;
+    margin-bottom:8px;
+
+}
+
+.encabezado-compra p{
+
+    color:#d9d9d9;
+    font-size:18px;
+
+}
+
+.contenedor-compra{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+}
+
+.panel{
+
+    background:rgba(20,35,55,.92);
+
+    border:1px solid #39d9ff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    color:white;
+
+    box-shadow:0 0 20px rgba(0,0,0,.35);
+
+}
+
+.panel-titulo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.panel-titulo h2{
+
+    margin:0;
+
+}
+
+.panel-titulo .material-icons{
+
+    font-size:36px;
+
+    color:#39d9ff;
+
+}
+
+.lista{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.producto{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+    background:#1b3149;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    transition:.3s;
+
+}
+
+.producto:hover{
+
+    transform:translateY(-2px);
+
+    border:1px solid #39d9ff;
+
+}
+
+.producto img{
+
+    width:120px;
+
+    height:120px;
+
+    object-fit:contain;
+
+    border-radius:12px;
+
+    background:white;
+
+    padding:10px;
+
+}
+
+.info-producto{
+
+    flex:1;
+
+}
+
+.info-producto h3{
+
+    margin:0 0 12px;
+
+    color:#39d9ff;
+
+}
+
+.info-producto p{
+
+    margin:8px 0;
+
+}
+
+.resumen{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+.fila{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:20px;
+
+}
+
+.total{
+
+    color:#39d9ff;
+
+    font-size:28px;
+
+}
+
+.btn-finalizar{
+
+    width:100%;
+
+    background:#39d9ff;
+
+    color:#08233b;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.btn-finalizar:hover{
+
+    background:#5de3ff;
+
+    transform:translateY(-2px);
+
+}
+
+.btn-finalizar:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+.btn-cancelar{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ff9800;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+.btn-cancelar:hover{
+
+    background:#ffac33;
+
+}
+
+.mensaje{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#39d9ff;
+
+    font-weight:bold;
+
+}
+
+.sin-productos{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+.sin-productos .material-icons{
+
+    font-size:70px;
+
+    color:#39d9ff;
+
+    margin-bottom:20px;
+
+}
+
+@media(max-width:900px){
+
+    .contenedor-compra{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .producto{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}

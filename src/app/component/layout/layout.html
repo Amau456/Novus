@@ -9,33 +9,52 @@
   <ul class="menu">
 
     <li>
-      <a routerLink="/home">Inicio</a>
+      <a routerLink="/home">
+        Inicio
+      </a>
     </li>
 
     <li>
-      <a routerLink="/inicio">Catálogo</a>
+      <a routerLink="/inicio">
+        Catálogo
+      </a>
     </li>
 
     <li>
-      <a routerLink="/contactanos">Contáctanos</a>
+      <a routerLink="/contactanos">
+        Contáctanos
+      </a>
     </li>
 
     <li>
-      <a routerLink="/reservas">Reservas</a>
+      <a routerLink="/reservas">
+        Reservas
+      </a>
     </li>
 
-    <li *ngIf="usuario && usuario.id_rol !== 4">
-      <a routerLink="/mecanico">Mecánico</a>
+  
+    <li *ngIf="usuario?.id_rol === 3">
+      <a routerLink="/mecanico">
+        Mecánico
+      </a>
     </li>
-  <li *ngIf="usuario?.id_rol === 1 || usuario?.id_rol === 2">
-    <a routerLink="/administrador">Administración</a>
-</li>
+
+    <li
+      *ngIf="
+        usuario?.id_rol === 1 ||
+        usuario?.id_rol === 2
+      ">
+
+      <a routerLink="/administrador">
+        Administración
+      </a>
+
+    </li>
+
   </ul>
 
-  <!-- Botones del lado derecho -->
   <div class="acciones-navbar">
 
-    <!-- Abre la ventana lateral del carrito -->
     <button
       class="btn-carrito-navbar"
       type="button"
@@ -45,11 +64,13 @@
         shopping_cart
       </span>
 
-      <span>Carrito</span>
+      <span>
+        Carrito
+      </span>
 
     </button>
 
-    <!-- Solo aparece cuando no existe una sesión -->
+  
     <button
       class="btn"
       type="button"
@@ -60,7 +81,6 @@
 
     </button>
 
-    <!-- Solo aparece cuando existe una sesión -->
     <div
       class="usuario"
       *ngIf="usuario">
@@ -118,7 +138,7 @@
       src="assets/Imagenes/Logo1.png"
       alt="Logo de Novus">
 
-    <!-- Formulario de inicio de sesión -->
+
     <div
       class="form-container"
       *ngIf="modo === 'login'">
@@ -159,28 +179,38 @@
 
         </button>
 
-        <div class="forgot">
+      </div>
 
-          <span class="text-small">
-            ¿No tienes una cuenta?
-          </span>
+      <div class="forgot">
 
-          <button
-            class="for"
-            type="button"
-            (click)="cambiarRegistro()">
+        <span class="text-small">
+          ¿No tienes una cuenta?
+        </span>
 
-            Regístrate aquí
+        <button
+          class="for"
+          type="button"
+          (click)="cambiarRegistro()">
 
-          </button>
+          Regístrate aquí
 
-        </div>
+        </button>
+<div class="forgot-password">
 
+  <button
+  class="btn-recuperar"
+  type="button"
+  (click)="abrirRecuperacion()">
+
+  ¿Olvidaste tu contraseña?
+
+</button>
+
+</div>
       </div>
 
     </div>
 
-    <!-- Formulario de registro -->
     <div
       class="form-container"
       *ngIf="modo === 'registro'">
@@ -216,8 +246,8 @@
       <input
         class="casilla"
         type="tel"
-        placeholder="Teléfono"
         maxlength="10"
+        placeholder="Teléfono"
         [(ngModel)]="registro.telefono">
 
       <input
@@ -250,6 +280,57 @@
 
     </div>
 
+
+    <div
+      class="form-container"
+      *ngIf="modo === 'verificacion'">
+
+      <h2 class="text">
+        Verificar correo
+      </h2>
+
+      <p class="text-small">
+        Hemos enviado un código de 6 dígitos a:
+      </p>
+
+      <p class="correo-verificacion">
+        {{ verificacion.correo }}
+      </p>
+
+      <input
+        class="casilla"
+        type="text"
+        maxlength="6"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        placeholder="Código de verificación"
+        [(ngModel)]="verificacion.token">
+
+      <div class="buttons">
+
+        <button
+          class="Ing"
+          type="button"
+          (click)="verificarCorreo()">
+
+          Verificar cuenta
+
+        </button>
+
+        <button
+          class="btn-secundario"
+          type="button"
+          (click)="cambiarLogin()">
+
+          Volver al login
+
+        </button>
+
+      </div>
+
+    </div>
+
+
     <p
       class="mensaje-alerta"
       *ngIf="mensaje">
@@ -261,6 +342,7 @@
   </div>
 
 </div>
+
 
 
 
@@ -281,7 +363,9 @@
           shopping_cart
         </span>
 
-        <h2>Mi carrito</h2>
+        <h2>
+          Mi carrito
+        </h2>
 
       </div>
 
@@ -299,7 +383,9 @@
 
     </div>
 
-    <!-- Cuando no hay sesión -->
+
+   
+
     <div
       class="carrito-sin-sesion"
       *ngIf="!usuario">
@@ -308,7 +394,9 @@
         lock
       </span>
 
-      <h3>Debes iniciar sesión</h3>
+      <h3>
+        Debes iniciar sesión
+      </h3>
 
       <p>
         Inicia sesión para consultar tu carrito y realizar compras.
@@ -325,73 +413,143 @@
 
     </div>
 
-    <!-- Cuando hay sesión -->
-   <div class="carrito-contenido" *ngIf="usuario">
 
-  <h3>
-    Carrito de {{ usuario.nombre }}
-  </h3>
+ 
 
-  <!-- Carrito vacío -->
-  <div
-    class="carrito-vacio"
-    *ngIf="productosCarrito.length === 0">
+    <div
+      class="carrito-contenido"
+      *ngIf="usuario">
 
-    <span class="material-icons icono-carrito-vacio">
-      shopping_cart
-    </span>
+      <h3>
+        Carrito de {{ usuario.nombre }}
+      </h3>
 
-    <p>
-      Todavía no has agregado refacciones.
-    </p>
 
-  </div>
+     
 
-  <!-- Productos del carrito -->
-<div
-  class="lista-carrito"
-  *ngIf="productosCarrito.length > 0">
+      <div
+        class="carrito-vacio"
+        *ngIf="productosCarrito.length === 0">
 
-  <!-- Productos -->
-  <div
-    class="producto-carrito"
-    *ngFor="let producto of productosCarrito">
+        <span class="material-icons icono-carrito-vacio">
+          shopping_cart
+        </span>
 
-    ...
-    <!-- Todo el código del producto -->
-    ...
+        <p>
+          Todavía no has agregado refacciones.
+        </p>
 
-  </div>
+      </div>
 
-  <!-- Resumen -->
-  <div class="resumen-carrito">
 
-    <div class="total-carrito">
+  
 
-      <span>Total:</span>
+      <div
+        class="lista-carrito"
+        *ngIf="productosCarrito.length > 0">
 
-      <strong>
+        <div
+          class="producto-carrito"
+          *ngFor="let producto of productosCarrito">
 
-        ${{ calcularTotal() }}
+          <img
+            class="imagen-producto-carrito"
+            [src]="'assets/Refacciones/' + producto.imagen"
+            [alt]="producto.nombre_pieza">
 
-      </strong>
+          <div class="informacion-producto">
+
+            <h4>
+              {{ producto.nombre_pieza }}
+            </h4>
+
+            <p>
+              Precio:
+              ${{ producto.precio_unitario }}
+            </p>
+
+            <div class="controles-cantidad">
+
+              <button
+                type="button"
+                class="btn-cantidad"
+                (click)="disminuirCantidad(producto)">
+
+                −
+
+              </button>
+
+              <span class="cantidad-producto">
+                {{ producto.cantidad }}
+              </span>
+
+              <button
+                type="button"
+                class="btn-cantidad"
+                (click)="aumentarCantidad(producto)">
+
+                +
+
+              </button>
+
+            </div>
+
+            <p class="subtotal-producto">
+
+              Subtotal:
+              ${{
+                producto.precio_unitario *
+                producto.cantidad
+              }}
+
+            </p>
+
+            <button
+              type="button"
+              class="btn-eliminar-producto"
+              (click)="eliminarProducto(producto)">
+
+              <span class="material-icons">
+                delete
+              </span>
+
+              Eliminar
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="resumen-carrito">
+
+          <div class="total-carrito">
+
+            <span>
+              Total:
+            </span>
+
+            <strong>
+              ${{ calcularTotal() }}
+            </strong>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn-comprar-carrito"
+            (click)="procederCompra()">
+
+            Proceder a la compra
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
-
-   <button
-  type="button"
-  class="btn-comprar-carrito"
-  (click)="procederCompra()">
-
-  Proceder a la compra
-
-</button>
-
-  </div>
-
-</div>
-
-</div>
 
   </aside>
 
