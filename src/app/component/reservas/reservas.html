@@ -157,32 +157,51 @@
     </div>
 
    
-    <div class="campo">
+   <div class="campo">
 
-      <label for="fecha">
-        Fecha deseada *
-      </label>
+  <label for="fecha">
+    Fecha deseada *
+  </label>
 
-      <input
-        id="fecha"
-        type="date"
-        [(ngModel)]="reserva.fecha">
+  <input
+    id="fecha"
+    type="date"
+    [min]="fechaMinima"
+    [(ngModel)]="reserva.fecha"
+    (change)="generarHorarios()">
 
-    </div>
+</div>
 
-    
-    <div class="campo">
+<div class="campo">
 
-      <label for="hora">
-        Hora deseada *
-      </label>
+  <label for="hora">
+    Hora deseada *
+  </label>
 
-      <input
-        id="hora"
-        type="time"
-        [(ngModel)]="reserva.hora">
+  <select
+    id="hora"
+    [(ngModel)]="reserva.hora"
+    [disabled]="
+      !reserva.fecha ||
+      horariosDisponibles.length === 0
+    ">
 
-    </div>
+    <option value="">
+      Selecciona un horario
+    </option>
+
+    <option
+      *ngFor="let hora of horariosDisponibles"
+      [value]="hora">
+
+      {{ hora }}
+
+    </option>
+
+  </select>
+
+</div>
+
 
     
     <div class="campo campo-completo">

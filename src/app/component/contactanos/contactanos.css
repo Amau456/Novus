@@ -1,13 +1,17 @@
 :host {
   display: block;
   min-height: 100vh;
+
+  padding: 110px 20px 50px;
+
   background-image: url('/assets/Imagenes/Fondo2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  padding-top: 80px;
+
   box-sizing: border-box;
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #ffffff;
 }
@@ -15,202 +19,318 @@
 /* Contenedor principal */
 .contact-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1250px;
+
   margin: 0 auto;
-  padding: 20px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   box-sizing: border-box;
 }
 
 /* Encabezado */
 .contact-header {
-  margin-bottom: 40px;
+  width: 100%;
+
+  margin-bottom: 35px;
+
   text-align: center;
 }
 
 .contact-title {
-  margin: 0 0 10px;
-  font-size: 2.5rem;
+  margin: 0 0 12px;
+
+  font-size: 2.7rem;
   font-weight: 800;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+
+  text-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.75);
 }
 
 .contact-subtitle {
-  margin: 0;
+  max-width: 760px;
+
+  margin: 0 auto;
+
   color: #ccd6f6;
+
   font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-/* Rejilla principal */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px;
-  width: 100%;
-}
-
-/* Tarjetas */
+/* Tarjeta principal del mapa */
 .contact-card {
-  min-width: 0;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 1100px;
+
+  padding: 28px;
+
+  background: rgba(20, 35, 55, 0.88);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(74, 196, 243, 0.35);
+  border-radius: 22px;
+
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.42),
+    0 0 22px rgba(74, 196, 243, 0.08);
+
   box-sizing: border-box;
 }
 
+/* Encabezado de la tarjeta */
 .card-header {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+
   text-align: center;
 }
 
 .card-icon {
   display: block;
+
   margin-bottom: 8px;
-  font-size: 2.2rem;
+
+  font-size: 2.5rem;
 }
 
 .contact-card h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
+  margin: 0 0 8px;
+
+  font-size: 1.7rem;
+  font-weight: 750;
 }
 
 .contact-card p {
-  margin: 5px 0 0;
+  margin: 0;
+
   color: #4ac4f3;
-  font-size: 0.9rem;
+
+  font-size: 1rem;
+}
+
+/* Contenedor del mapa */
+.api-placeholder-maps {
+  width: 100%;
+
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.2);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+
+  box-shadow:
+    inset 0 0 18px rgba(0, 0, 0, 0.2);
+
+  box-sizing: border-box;
 }
 
 /* Mapa */
-.api-placeholder-maps {
-  flex-grow: 1;
-  min-height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
 .google-map {
   display: block;
+
   width: 100%;
-  height: 320px;
+  height: 520px;
+
   border: 0;
-  border-radius: 12px;
+  border-radius: 16px;
 }
 
-/* Formulario de Correo */
-.contenedor-formulario {
-  flex-grow: 1;
+/* Widget flotante de Instagram */
+.instagram-widget {
+  position: fixed;
+
+  right: 22px;
+  bottom: 22px;
+
+  width: 310px;
+
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  align-items: center;
 
-.formulario-correo {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+  gap: 14px;
 
-.casilla {
-  width: 100%;
   padding: 14px 16px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 1rem;
-  font-family: inherit;
-  outline: none;
+
+  background: rgba(20, 31, 46, 0.96);
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.4);
+
+  z-index: 9999;
+
   box-sizing: border-box;
-  transition: border-color 0.3s ease, background 0.3s ease;
 }
 
-.casilla::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+/* Logo de Instagram */
+.instagram-widget img {
+  width: 52px;
+  height: 52px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
 }
 
-.casilla:focus {
-  border-color: #4ac4f3;
-  background: rgba(0, 0, 0, 0.4);
+/* Información de Instagram */
+.instagram-info {
+  min-width: 0;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  gap: 3px;
 }
 
-.casilla.textarea {
-  resize: vertical;
-  min-height: 120px;
+.titulo-instagram {
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 750;
 }
 
-/* Botón de Enviar */
-.btn-enviar {
-  padding: 14px 24px;
-  background: #4ac4f3;
-  color: #0a192f;
-  border: none;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(74, 196, 243, 0.3);
-  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+.usuario-instagram {
+  color: #c8d2dc;
+
+  font-size: 14px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.btn-enviar:hover:not(:disabled) {
-  transform: translateY(-2px);
-  background: #3ab0dd;
-  box-shadow: 0 6px 20px rgba(74, 196, 243, 0.5);
+/* Botón Seguir */
+.instagram-widget a {
+  flex-shrink: 0;
+
+  padding: 9px 17px;
+
+  background: linear-gradient(
+    135deg,
+    #833ab4,
+    #fd1d1d,
+    #fcb045
+  );
+
+  color: #ffffff;
+
+  border-radius: 22px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.btn-enviar:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
+.instagram-widget a:hover {
+  transform: translateY(-2px) scale(1.04);
 
-/* Mensaje del servidor */
-.mensaje-alerta {
-  margin-top: 15px;
-  text-align: center;
-  color: #4ac4f3;
-  font-weight: 600;
-  font-size: 0.95rem;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.34);
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
+  :host {
+    padding:
+      105px 14px 120px;
   }
+
   .contact-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
+
+  .contact-subtitle {
+    font-size: 1rem;
+  }
+
   .contact-card {
     padding: 20px;
+  }
+
+  .google-map {
+    height: 420px;
+  }
+
+  .instagram-widget {
+    right: 14px;
+    bottom: 14px;
+
+    width: calc(100% - 28px);
+    max-width: 360px;
   }
 }
 
 @media (max-width: 480px) {
-  .contact-container {
-    padding: 12px;
+  :host {
+    padding:
+      100px 10px 125px;
   }
+
   .contact-title {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
   }
-  .google-map,
+
+  .contact-card {
+    padding: 15px;
+
+    border-radius: 17px;
+  }
+
+  .contact-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .google-map {
+    height: 330px;
+
+    border-radius: 12px;
+  }
+
   .api-placeholder-maps {
-    min-height: 280px;
-    height: 280px;
+    border-radius: 12px;
+  }
+
+  .instagram-widget {
+    gap: 10px;
+
+    padding: 11px 12px;
+  }
+
+  .instagram-widget img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .titulo-instagram {
+    font-size: 15px;
+  }
+
+  .usuario-instagram {
+    font-size: 12px;
+  }
+
+  .instagram-widget a {
+    padding: 8px 13px;
+
+    font-size: 12px;
   }
 }

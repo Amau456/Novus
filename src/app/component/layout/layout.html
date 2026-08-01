@@ -331,14 +331,90 @@
     </div>
 
 
-    <p
-      class="mensaje-alerta"
-      *ngIf="mensaje">
+    <div
+  class="form-container"
+  *ngIf="modo === 'recuperacion'">
 
-      {{ mensaje }}
+  <h2 class="text">
+    Recuperar contraseña
+  </h2>
 
-    </p>
+  <p class="text-small">
+    Ingresa el correo de tu cuenta.
+  </p>
 
+  <input
+    class="casilla"
+    type="email"
+    placeholder="Correo electrónico"
+    [(ngModel)]="recuperacion.correo">
+
+  <button
+    class="Ing"
+    type="button"
+    [disabled]="enviandoCodigoRecuperacion"
+    (click)="enviarCodigoRecuperacion()">
+
+    {{
+      enviandoCodigoRecuperacion
+      ? 'Enviando código...'
+      : 'Enviar código'
+    }}
+
+  </button>
+
+  <hr>
+
+  <input
+    class="casilla"
+    type="text"
+    maxlength="6"
+    placeholder="Código de recuperación"
+    [(ngModel)]="recuperacion.token">
+
+  <input
+    class="casilla"
+    type="password"
+    placeholder="Nueva contraseña"
+    [(ngModel)]="recuperacion.nueva_contrasena">
+
+  <div class="buttons">
+
+    <button
+      class="Ing"
+      type="button"
+      [disabled]="actualizandoContrasena"
+      (click)="actualizarContrasena()">
+
+      {{
+        actualizandoContrasena
+        ? 'Actualizando...'
+        : 'Cambiar contraseña'
+      }}
+
+    </button>
+
+    <button
+      class="btn-secundario"
+      type="button"
+      (click)="cambiarLogin()">
+
+      Volver al login
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<p
+  class="mensaje-alerta"
+  *ngIf="mensaje">
+
+  {{ mensaje }}
+
+</p>
   </div>
 
 </div>

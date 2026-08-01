@@ -6,151 +6,243 @@
 
   <div class="panel lista">
     <h2>Búsqueda y Lista de Refacciones</h2>
+
     <div class="contenedor-busqueda">
       <input
         class="input-busqueda"
         type="text"
         placeholder="Buscar refacción"
         [(ngModel)]="busqueda">
+
       <button
         class="btn-buscar"
         type="button"
         (click)="buscarRefacciones()">
+
         Buscar
+
       </button>
     </div>
 
     <div class="contenedor-items">
+
       <div
         class="refaccion"
         *ngFor="let refaccion of refaccionesFiltradas"
         (click)="seleccionarRefaccion(refaccion)">
+
         <img
           class="imagen-refaccion"
           [src]="'assets/Refacciones/' + refaccion.imagen"
           [alt]="refaccion.nombre_pieza">
-        <h3>{{ refaccion.nombre_pieza }}</h3>
+
+        <h3>
+          {{ refaccion.nombre_pieza }}
+        </h3>
+
         <p>
           Marca compatible:
           {{ refaccion.marca_compatible }}
         </p>
+
         <p>
           Precio:
           ${{ refaccion.precio_unitario }}
         </p>
+
         <p>
           Stock disponible:
           {{ refaccion.stock_disponible }}
         </p>
+
       </div>
+
     </div>
   </div>
 
   <div class="panel datos">
+
     <div class="perfil">
+
       <h2>Mis Datos</h2>
+
       <div *ngIf="usuario">
-        <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-        <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-        <p><strong>Teléfono:</strong> {{ usuario.telefono || 'No disponible' }}</p>
+
+        <p>
+          <strong>Nombre:</strong>
+          {{ usuario.nombre }}
+        </p>
+
+        <p>
+          <strong>Correo:</strong>
+          {{ usuario.correo }}
+        </p>
+
+        <p>
+          <strong>Teléfono:</strong>
+          {{ usuario.telefono || 'No disponible' }}
+        </p>
+
       </div>
+
       <div *ngIf="!usuario">
+
         <p>
           Debes iniciar sesión para acceder a esta sección.
         </p>
+
       </div>
+
     </div>
 
     <div class="historial-usuario">
+
       <h2>Historial de Consultas</h2>
+
       <div *ngIf="usuario">
-        <p>Aquí aparecerán las refacciones consultadas.</p>
+
+        <p>
+          Aquí aparecerán las refacciones consultadas.
+        </p>
+
       </div>
+
       <div *ngIf="!usuario">
-        <p>Inicia sesión para consultar tu historial.</p>
+
+        <p>
+          Inicia sesión para consultar tu historial.
+        </p>
+
       </div>
+
     </div>
 
     <div class="preferencias-usuario">
+
       <h2>Preferencias de Compra</h2>
+
       <div *ngIf="usuario">
-        <p>Aquí aparecerán las preferencias del usuario.</p>
+
+        <p>
+          Aquí aparecerán las preferencias del usuario.
+        </p>
+
       </div>
+
       <div *ngIf="!usuario">
-        <p>Inicia sesión para consultar tus preferencias.</p>
+
+        <p>
+          Inicia sesión para consultar tus preferencias.
+        </p>
+
       </div>
+
     </div>
+
   </div>
 
   <div class="panel detalles">
+
     <h2>Detalles de Refacción Seleccionada</h2>
 
     <div
       class="sin-seleccion"
       *ngIf="!refaccionSeleccionada">
+
       <p>
         Selecciona una refacción de la lista para consultar su información.
       </p>
+
     </div>
-  
+
     <div
       class="detalle-refaccion"
       *ngIf="refaccionSeleccionada">
+
       <img
         class="imagen-detalle"
         [src]="'assets/Refacciones/' + refaccionSeleccionada.imagen"
         [alt]="refaccionSeleccionada.nombre_pieza">
 
-      <h3>{{ refaccionSeleccionada.nombre_pieza }}</h3>
+      <h3>
+        {{ refaccionSeleccionada.nombre_pieza }}
+      </h3>
 
       <div class="dato-detalle">
+
         <span class="etiqueta">
           Marca compatible:
         </span>
+
         <span>
           {{ refaccionSeleccionada.marca_compatible }}
         </span>
+
       </div>
 
       <div class="dato-detalle">
+
         <span class="etiqueta">
           Precio:
         </span>
+
         <span>
           ${{ refaccionSeleccionada.precio_unitario }}
         </span>
+
       </div>
 
       <div class="dato-detalle">
+
         <span class="etiqueta">
           Stock disponible:
         </span>
+
         <span>
           {{ refaccionSeleccionada.stock_disponible }} piezas
         </span>
+
       </div>
 
       <div class="acciones-refaccion">
+
         <button
           class="btn-carrito"
           type="button"
           (click)="agregarAlCarrito()">
+
           Agregar al carrito
+
         </button>
+
         <button
           class="btn-comprar"
           type="button"
           (click)="comprarAhora()">
+
           Finalizar Compra
+
         </button>
+
       </div>
 
-      <p
-        class="mensaje-carrito"
-        *ngIf="mensaje">
-        {{ mensaje }}
-      </p>
     </div>
+
   </div>
+
+</div>
+
+<!-- Notificación flotante -->
+<div
+  class="toast-carrito"
+  *ngIf="mensaje">
+
+  <span class="material-icons">
+    check_circle
+  </span>
+
+  <span>
+    {{ mensaje }}
+  </span>
 
 </div>

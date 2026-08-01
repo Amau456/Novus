@@ -326,3 +326,8 @@
     font-size: 0.95rem;
   }
 }
+@media (max-width: 767px) {
+  .formulario-reserva {
+    grid-template-columns: 1fr;
+  }
+}

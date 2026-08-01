@@ -1,66 +1,202 @@
 /* =========================================
-   1. RESET BÁSICO (Súper importante)
-   ========================================= */
-/* Esto asegura que los bordes y rellenos (paddings) no hagan más grandes tus elementos de lo que deberían, evitando que se desborden en celulares */
-*, *::before, *::after {
+   1. CONFIGURACIÓN GLOBAL
+========================================= */
+
+html {
+  width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
+
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif; /* Puedes cambiar el tipo de letra después */
-  overflow-x: hidden; /* Evita la molesta barra de desplazamiento horizontal en celulares */
+
+  overflow-x: hidden;
+
+  font-family:
+    Arial,
+    sans-serif;
 }
 
 
-/* =========================================
-   2. CLASE CONTENEDOR GLOBAL
-   ========================================= */
-/* Puedes usar esta clase class="contenedor" en cualquier archivo HTML de tus componentes para centrar el contenido y darle márgenes seguros */
-.contenedor {
+
+
+img,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+iframe {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+}
+
+
+
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+
+
+.contenedor {
+  width: calc(100% - 30px);
+  max-width: 1200px;
+
   margin-right: auto;
   margin-left: auto;
+
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 
-/* =========================================
-   3. REGLAS RESPONSIVAS (MEDIA QUERIES)
-   ========================================= */
 
-/* ---> PARA COMPUTADORAS Y LAPTOPS (Pantallas grandes) <--- */
+
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+a {
+  overflow-wrap: anywhere;
+}
+
+
+
+
+.columna-responsiva {
+  display: flex;
+  gap: 20px;
+}
+
+.grid-responsiva {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(280px, 1fr)
+    );
+
+  gap: 20px;
+}
+
+
+
+
 @media (min-width: 1024px) {
+
   .contenedor {
-    max-width: 1000px; /* Evita que el contenido se estire demasiado en monitores grandes */
+    max-width: 1200px;
   }
+
 }
 
-/* ---> PARA TABLETS (Pantallas medianas) <--- */
-@media (max-width: 1023px) and (min-width: 768px) {
+
+
+
+@media (
+  max-width: 1023px
+) and (
+  min-width: 768px
+) {
+
   .contenedor {
-    max-width: 750px;
+    width: calc(100% - 24px);
+    max-width: 900px;
   }
+
+  html {
+    font-size: 15px;
+  }
+
 }
 
-/* ---> PARA CELULARES (Pantallas pequeñas) <--- */
+
+
+
 @media (max-width: 767px) {
-  /* En celulares, usualmente queremos que todo abarque el 100% del ancho */
+
   .contenedor {
     width: 100%;
-    padding: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
   }
-  
-  /* Ejemplo: Reducir un poco los títulos en celulares para que quepan bien */
+
+  html {
+    font-size: 14px;
+  }
+
   h1 {
-    font-size: 24px;
+    font-size:
+      clamp(
+        1.7rem,
+        8vw,
+        2.2rem
+      );
   }
-  
-  /* Si tienes elementos uno al lado del otro, esta clase los pondrá uno debajo del otro en celular */
+
+  h2 {
+    font-size:
+      clamp(
+        1.35rem,
+        6vw,
+        1.8rem
+      );
+  }
+
   .columna-responsiva {
-    display: flex;
     flex-direction: column !important;
   }
+
+  input,
+  select,
+  textarea,
+  button {
+    min-height: 44px;
+  }
+
+}
+
+
+
+
+@media (max-width: 480px) {
+
+  .contenedor {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  html {
+    font-size: 13px;
+  }
+
 }

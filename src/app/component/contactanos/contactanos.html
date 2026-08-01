@@ -1,77 +1,66 @@
 <div class="contact-container">
+
   <div class="contact-header">
-    <h1 class="contact-title">Ponte en contacto con NOVUS</h1>
-    <p class="contact-subtitle">Estamos listos para atenderte y resolver cualquier duda sobre tu servicio automotriz</p>
+
+    <h1 class="contact-title">
+      Ponte en contacto con NOVUS
+    </h1>
+
+    <p class="contact-subtitle">
+      Encuéntranos fácilmente y síguenos en nuestras redes sociales.
+    </p>
+
   </div>
 
-  <div class="contact-grid">
-    
-    <!-- Tarjeta de Mapa -->
-    <div class="contact-card">
-      <div class="card-header">
-        <span class="card-icon">📍</span>
-        <h2>Nuestra Ubicación</h2>
-        <p>Visítanos en nuestro taller central</p>
-      </div>
-      <div class="api-placeholder-maps">
-        <iframe
-          class="google-map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4467.032959807582!2d-98.98438653953845!3d19.699336484532687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ede97b7a236d%3A0x2f0274813819e530!2sUTTEC%20-%20Universidad%20Tecnol%C3%B3gica%20de%20Tec%C3%A1mac!5e0!3m2!1ses-419!2smx!4v1784669726569!5m2!1ses-419!2smx" 
-          width="600" 
-          height="450" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-    </div>
+  <div class="contact-card">
 
-    <!-- Tarjeta de Formulario de Correo -->
-    <div class="contact-card">
-      <div class="card-header">
-        <span class="card-icon">✉️</span>
-        <h2>Atención Inmediata</h2>
-        <p>Envíanos un mensaje y te responderemos a la brevedad</p>
-      </div>
-      
-      <div class="contenedor-formulario">
-        <form class="formulario-correo" (ngSubmit)="enviarMensaje()">
-          
-          <input 
-            type="text" 
-            class="casilla" 
-            placeholder="Tu nombre completo" 
-            name="nombre" 
-            [(ngModel)]="contacto.nombre" 
-            required>
-      
-          <input 
-            type="email" 
-            class="casilla" 
-            placeholder="Tu correo electrónico" 
-            name="correo" 
-            [(ngModel)]="contacto.correo" 
-            required>
-      
-          <textarea 
-            class="casilla textarea" 
-            placeholder="Escribe tu mensaje o duda aquí..." 
-            name="mensaje" 
-            [(ngModel)]="contacto.mensaje" 
-            rows="4" 
-            required></textarea>
-      
-          <button type="submit" class="btn-enviar" [disabled]="enviando">
-            {{ enviando ? 'Enviando...' : 'Enviar mensaje' }}
-          </button>
-        </form>
-      
-        <!-- Mensaje de éxito o error -->
-        <p class="mensaje-alerta" *ngIf="respuestaServidor">{{ respuestaServidor }}</p>
-      </div>
+    <div class="card-header">
+
+      <span class="card-icon">📍</span>
+
+      <h2>Nuestra Ubicación</h2>
+
+      <p>
+        Visítanos en nuestro taller central.
+      </p>
 
     </div>
 
+    <iframe
+      class="google-map"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.2328017998975!2d-98.98434962415934!3d19.70271033199809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ed3d1abbecf1%3A0xb88fe9d9e13efec2!2sUniversidad%20Tecnol%C3%B3gica%20de%20Tec%C3%A1mac%2C%2055740%20San%20Mart%C3%ADn%20Azcatepec%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1785552253251!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+
   </div>
+
+</div>
+
+<div class="instagram-widget">
+
+  <img
+    src="assets/Imagenes/instagram.png"
+    alt="Instagram">
+
+  <div class="instagram-info">
+
+    <span class="titulo-instagram">
+      Instagram
+    </span>
+
+    <span class="usuario-instagram">
+      @novus_oficial
+    </span>
+
+  </div>
+
+  <a
+    href="https://www.instagram.com/novus_oficial/"
+    target="_blank">
+
+    Seguir
+
+  </a>
+
 </div>

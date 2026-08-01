@@ -36,6 +36,8 @@ export class Layout {
   usuario: any = null;
 
   mensaje = '';
+  enviandoCodigoRecuperacion = false;
+actualizandoContrasena = false;
 
   productosCarrito: any[] = [];
 
@@ -436,27 +438,53 @@ abrirRecuperacion() {
 
 enviarCodigoRecuperacion() {
 
-  if (this.recuperacion.correo.trim() === '') {
+  if (this.enviandoCodigoRecuperacion) {
+    return;
+  }
+
+  const correo =
+    this.recuperacion.correo.trim();
+
+  if (correo === '') {
     this.mensaje = 'Ingresa tu correo';
     return;
   }
+
+  if (
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)
+  ) {
+    this.mensaje =
+      'Ingresa un correo electrónico válido';
+    return;
+  }
+
+  this.enviandoCodigoRecuperacion = true;
+  this.mensaje = 'Enviando código...';
 
   this.http
     .post<any>(
       'http://localhost/NovusAPI/enviar_token_recuperacion.php',
       {
-        correo: this.recuperacion.correo.trim()
+        correo
       }
     )
     .subscribe({
 
       next: (res) => {
+
+        this.enviandoCodigoRecuperacion = false;
         this.mensaje = res.mensaje;
+
       },
 
-      error: () => {
+      error: (error) => {
+
+        this.enviandoCodigoRecuperacion = false;
+
         this.mensaje =
+          error?.error?.mensaje ||
           'Error al enviar el código de recuperación';
+
       }
 
     });
@@ -465,58 +493,71 @@ enviarCodigoRecuperacion() {
 
 actualizarContrasena() {
 
+  if (this.actualizandoContrasena) {
+    return;
+  }
+
+  const correo =
+    this.recuperacion.correo.trim();
+
+  const token =
+    this.recuperacion.token.trim();
+
+  const nuevaContrasena =
+    this.recuperacion.nueva_contrasena;
+
   if (
-    this.recuperacion.correo.trim() === '' ||
-    this.recuperacion.token.trim() === '' ||
-    this.recuperacion.nueva_contrasena === ''
+    correo === '' ||
+    token === '' ||
+    nuevaContrasena === ''
   ) {
-    this.mensaje = 'Todos los campos son obligatorios';
+    this.mensaje =
+      'Todos los campos son obligatorios';
     return;
   }
 
   if (
-    !/^[0-9]{6}$/.test(
-      this.recuperacion.token.trim()
-    )
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)
   ) {
+    this.mensaje =
+      'Ingresa un correo electrónico válido';
+    return;
+  }
+
+  if (!/^[0-9]{6}$/.test(token)) {
     this.mensaje =
       'El código debe contener 6 dígitos';
     return;
   }
 
-  if (
-    this.recuperacion.nueva_contrasena.length < 6
-  ) {
+  if (nuevaContrasena.length < 6) {
     this.mensaje =
       'La contraseña debe contener al menos 6 caracteres';
     return;
   }
 
+  this.actualizandoContrasena = true;
+  this.mensaje = 'Actualizando contraseña...';
+
   this.http
     .post<any>(
       'http://localhost/NovusAPI/actualizar_contrasena.php',
       {
-        correo:
-          this.recuperacion.correo.trim(),
-
-        token:
-          this.recuperacion.token.trim(),
-
-        nueva_contrasena:
-          this.recuperacion.nueva_contrasena
+        correo,
+        token,
+        nueva_contrasena: nuevaContrasena
       }
     )
     .subscribe({
 
       next: (res) => {
 
+        this.actualizandoContrasena = false;
         this.mensaje = res.mensaje;
 
         if (res.success) {
 
-          this.login.correo =
-            this.recuperacion.correo;
-
+          this.login.correo = correo;
           this.login.contrasena = '';
 
           this.recuperacion = {
@@ -526,13 +567,21 @@ actualizarContrasena() {
           };
 
           this.modo = 'login';
+
+          this.mensaje =
+            'Contraseña actualizada. Ya puedes iniciar sesión.';
         }
 
       },
 
-      error: () => {
+      error: (error) => {
+
+        this.actualizandoContrasena = false;
+
         this.mensaje =
+          error?.error?.mensaje ||
           'Error al actualizar la contraseña';
+
       }
 
     });
